@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.9.1'
+}
+
+sourceCompatibility = '18'
+targetCompatibility = '18'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+
+    implementation 'com.google.cloud:google-cloud-storage:2.3.0'
+    implementation('org.seleniumhq.selenium:selenium-java:4.7.0')
+    testImplementation('org.seleniumhq.selenium:selenium-java:4.7.0')
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+    implementation 'commons-io:commons-io:2.11.0'
+    testImplementation 'com.codeborne:selenide:5.24.0'
+
+
+//    implementation("com.slack.api:slack-api-client:1.28.0")
+
+//    // https://mvnrepository.com/artifact/com.azure/azure-identity
+//    implementation 'com.azure:azure-identity:1.8.1'
+//    // https://mvnrepository.com/artifact/com.azure/azure-storage-blob
+//    implementation 'com.azure:azure-storage-blob:12.21.1'
+
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+}
+
+
+
+test {
+    useJUnitPlatform()
+}
+//run {
+//    // gradle run -DslackLogLevel=debug
+//    systemProperty "org.slf4j.simpleLogger.log.com.slack.api", System.getProperty("slackLogLevel")
+//}
