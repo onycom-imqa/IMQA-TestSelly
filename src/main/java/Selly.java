@@ -59,17 +59,17 @@ public class Selly {
 
         Thread.sleep(4000);
 
-        WebElement MoreProjectsButton = driver.findElement(By.cssSelector("button[class='more-btn']"));
-        MoreProjectsButton.click();
-
-        Thread.sleep(3000);
+//        WebElement MoreProjectsButton = driver.findElement(By.cssSelector("button[class='more-btn']"));
+//        MoreProjectsButton.click();
+//
+//        Thread.sleep(3000);
 
 //        WebElement TestMpm = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(3) > div:nth-of-type(2) > table > tbody > tr:nth-of-type(39) > td:nth-of-type(2)"));
         WebElement goMpm = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(2) > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > div"));
         goMpm.click();
 //        TestMpm.click();
 
-        Thread.sleep(5000);
+        Thread.sleep(3000);
 
 //        WebElement DropBox = driver.findElement(By.cssSelector("html > body > div > div > div:nth-of-type(1) > section > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div > button"));
 //        DropBox.click();
@@ -86,19 +86,64 @@ public class Selly {
 
         WebElement SummaryButton = driver.findElement(By.cssSelector("span[class$='center']"));
         SummaryButton.click();
+        Thread.sleep(3000);
+//
+//        System.out.println(driver.findElement(By.cssSelector("html > body > div > div > div:nth-of-type(3) > div > div:nth-of-type(3) > div:nth-of-type(1) > table > tbody > tr > td:nth-of-type(4)")).getText().toString()+ "여기에요");
+//        Thread.sleep(2000);
+
+        WebElement SummaryClose = driver.findElement(By.cssSelector("img[style='cursor: pointer; position: absolute; top: 0px; left: 600px;']"));
+        SummaryClose.click();
+        Thread.sleep(2000);
+
+        WebElement AlarmButton = driver.findElement(By.cssSelector("html > body > div > div > header > div:nth-of-type(2) > div > ul > div:nth-of-type(2) > li"));
+        AlarmButton.click();
 
         Thread.sleep(3000);
+        WebElement AlarmPolicy = driver.findElement(By.cssSelector("a[class='out']"));
+        AlarmPolicy.click();
 
-
-        System.out.println(driver.findElement(By.cssSelector("html > body > div > div > div:nth-of-type(3) > div > div:nth-of-type(3) > div:nth-of-type(1) > table > tbody > tr > td:nth-of-type(4)")).getText().toString()+ "여기에요");
+        //알람 등록
+        WebElement AddAlarm = driver.findElement(By.cssSelector("button[class='add-btn']"));
+        AddAlarm.click();
         Thread.sleep(3000);
 
-        WebElement AlertButton = driver.findElement(By.cssSelector("span[class$='opacity'] span[class='ctxt']"));
-        AlertButton.click();
+        WebElement AlarmPolicyName = driver.findElement(By.cssSelector("input[class^='name-input']"));
+        AlarmPolicyName.sendKeys("테스트 알람 자동 생성");
+        Thread.sleep(3000);
 
+        WebElement AlarmNativeRendering = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(3) > input"));
+        AlarmNativeRendering.clear();
+        AlarmNativeRendering.sendKeys("1");
+        Thread.sleep(3000);
+        //경고알람을 메일로 받기 위해서 경고알림 수치를 낮춥니다.
 
+        WebElement EmailSelect = driver.findElement(By.cssSelector("label[for='email-input']"));
+        EmailSelect.click();
+        WebElement AlarmMember = driver.findElement(By.cssSelector("button[class^='member']"));
+        AlarmMember.click();
+        WebElement AlarmMemberSelect = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(3) > div:nth-of-type(2) > div > div > div > div > div > div:nth-of-type(1) > div > span:nth-of-type(1)"));
+        AlarmMemberSelect.click();
+        Thread.sleep(3000);
 
+        WebElement AlarmSave = driver.findElement(By.cssSelector("button[class='submit']"));
+        AlarmSave.click();
+        Thread.sleep(3000);
 
+        //알람 수정
+        WebElement ModifyAlarm = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(2)"));
+        ModifyAlarm.click();
+        Thread.sleep(3000);
+
+        WebElement ModifyAlarmPolicyName = driver.findElement(By.cssSelector("input[class='name-input']"));
+        ModifyAlarmPolicyName.clear();
+        Thread.sleep(2000);
+        ModifyAlarmPolicyName.sendKeys("테스트 알람 자동 생성 후 수정됨");
+        WebElement AlarmResponseTime = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div > div:nth-of-type(3) > div:nth-of-type(3) > input"));
+        AlarmResponseTime.clear();
+        AlarmResponseTime.sendKeys("1");
+        WebElement ModifyAlarmSave = driver.findElement(By.cssSelector("button[class='submit']"));
+        ModifyAlarmSave.click();
+        Thread.sleep(3000);
 
         // 크래시 버튼
         WebElement crashButton = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(3) > div:nth-of-type(" + (3) + ") > div > div:nth-of-type(1) > span:nth-of-type(3) > a:nth-of-type(2) > span"));
