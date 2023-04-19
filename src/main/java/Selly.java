@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -29,6 +28,20 @@ public class Selly {
 
     }
 
+//    @Configuration
+//    public class PropertyConfig {
+//        @Bean(name = "system")
+//        public PropertiesFactoryBean propertiesFactoryBean() throws Exception {
+//            PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
+//            ClassPathResource classPathResource = new ClassPathResource("com/application.yml");
+//
+//            propertiesFactoryBean.setLocation(classPathResource);
+//
+//            return propertiesFactoryBean;
+//        }
+//    }
+
+
     public Selly() {
 
         ChromeOptions option = new ChromeOptions();
@@ -36,7 +49,7 @@ public class Selly {
 //        option.addArguments("headless");
         driver = new ChromeDriver(option);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get("https://account.imqa.io/user/login");
 
     }
@@ -45,31 +58,31 @@ public class Selly {
 
 
         WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
-        idField.sendKeys("devload@naver.com");
+        idField.sendKeys("su10king@gmail.com");
         //devload@naver.com
 
         WebElement passwordField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(1) > input"));
-        passwordField.sendKeys("sh583582!23$");
+        passwordField.sendKeys("sucheol9608!");
 
 
         WebElement loginButton = driver.findElement(By.cssSelector("button[class='submit']"));
         loginButton.click();
 
 
-
-
-        Thread.sleep(4000);
-
-        WebElement MoreProjectsButton = driver.findElement(By.cssSelector("button[class='more-btn']"));
-        MoreProjectsButton.click();
-
-        Thread.sleep(3000);
-
-        WebElement TestMpm = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(3) > div:nth-of-type(2) > table > tbody > tr:nth-of-type(39) > td:nth-of-type(2)"));
-        TestMpm.click();
-//        WebElement goMpm = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(2) > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > div"));
-//        goMpm.click();
+//        Thread.sleep(4000);
+//
+//        WebElement MoreProjectsButton = driver.findElement(By.cssSelector("button[class='more-btn']"));
+//        MoreProjectsButton.click();
+//
 //        Thread.sleep(3000);
+//
+//        WebElement TestMpm = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(3) > div:nth-of-type(2) > table > tbody > tr:nth-of-type(39) > td:nth-of-type(2)"));
+//        TestMpm.click();
+//
+
+        WebElement goMpm = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(2) > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > div"));
+        goMpm.click();
+        Thread.sleep(3000);
 
 //        WebElement DropBox = driver.findElement(By.cssSelector("html > body > div > div > div:nth-of-type(1) > section > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div > button"));
 //        DropBox.click();
@@ -87,73 +100,71 @@ public class Selly {
         WebElement SummaryButton = driver.findElement(By.cssSelector("span[class$='center']"));
         SummaryButton.click();
         Thread.sleep(3000);
-//
-//        System.out.println(driver.findElement(By.cssSelector("html > body > div > div > div:nth-of-type(3) > div > div:nth-of-type(3) > div:nth-of-type(1) > table > tbody > tr > td:nth-of-type(4)")).getText().toString()+ "여기에요");
-//        Thread.sleep(2000);
+
 
         WebElement SummaryClose = driver.findElement(By.cssSelector("img[style='cursor: pointer; position: absolute; top: 0px; left: 600px;']"));
         SummaryClose.click();
         Thread.sleep(2000);
 
-        //알람 등록
-//        WebElement AlarmButton = driver.findElement(By.cssSelector("html > body > div > div > header > div:nth-of-type(2) > div > ul > div:nth-of-type(2) > li"));
-//        AlarmButton.click();
-//
-//        Thread.sleep(3000);
-//        WebElement AlarmPolicy = driver.findElement(By.cssSelector("a[class='out']"));
-//        AlarmPolicy.click();
-//
-//
-//        WebElement AddAlarm = driver.findElement(By.cssSelector("button[class='add-btn']"));
-//        AddAlarm.click();
-//        Thread.sleep(3000);
-//
-//        WebElement AlarmPolicyName = driver.findElement(By.cssSelector("input[class^='name-input']"));
-//        AlarmPolicyName.sendKeys("테스트 알람 자동 생성");
-//        Thread.sleep(3000);
-//
-//        WebElement AlarmNativeRendering = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(3) > input"));
-//        AlarmNativeRendering.clear();
-//        AlarmNativeRendering.sendKeys("1");
-//        Thread.sleep(3000);
-//        //경고알람을 메일로 받기 위해서 경고알림 수치를 낮춥니다.
-//
-//        WebElement EmailSelect = driver.findElement(By.cssSelector("label[for='email-input']"));
-//        EmailSelect.click();
-//        WebElement AlarmMember = driver.findElement(By.cssSelector("button[class^='member']"));
-//        AlarmMember.click();
-//        WebElement AlarmMemberSelect = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(3) > div:nth-of-type(2) > div > div > div > div > div > div:nth-of-type(1) > div > span:nth-of-type(1)"));
-//        AlarmMemberSelect.click();
-//        Thread.sleep(3000);
-//
-//        WebElement AlarmSave = driver.findElement(By.cssSelector("button[class='submit']"));
-//        AlarmSave.click();
-//        Thread.sleep(3000);
-//
-//        //알람 수정
-//        WebElement ModifyAlarm = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(2)"));
-//        ModifyAlarm.click();
-//        Thread.sleep(3000);
-//
-//        WebElement ModifyAlarmPolicyName2 = driver.findElement(By.cssSelector("input[class='name-input']"));
-//        ModifyAlarmPolicyName2.clear();
-//        Thread.sleep(2000);
-//        ModifyAlarmPolicyName2.sendKeys("테스트 알람 자동 생성 후 수정됨");
-//        WebElement AlarmResponseTime = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div > div:nth-of-type(3) > div:nth-of-type(3) > input"));
-//        AlarmResponseTime.clear();
-//        AlarmResponseTime.sendKeys("1");
-//        WebElement ModifyAlarmSave = driver.findElement(By.cssSelector("button[class='submit']"));
-//        ModifyAlarmSave.click();
-//        Thread.sleep(3000);
-//
-//
+//        알람 등록
+        WebElement AlarmButton = driver.findElement(By.cssSelector("html > body > div > div > header > div:nth-of-type(2) > div > ul > div:nth-of-type(6) > li"));
+        AlarmButton.click();
 
-        //앱 버전별 보고서 확인
-//        driver.get("https://account.imqa.io/user/login");
+        Thread.sleep(3000);
+        WebElement AlarmPolicy = driver.findElement(By.cssSelector("a[class='out']"));
+        AlarmPolicy.click();
 
-//        WebElement goMpm1 = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(2) > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > div"));
-//        goMpm1.click();
-//        Thread.sleep(3000);
+
+        WebElement AddAlarm = driver.findElement(By.cssSelector("button[class='add-btn']"));
+        AddAlarm.click();
+        Thread.sleep(3000);
+
+        WebElement AlarmPolicyName = driver.findElement(By.cssSelector("input[class^='name-input']"));
+        AlarmPolicyName.sendKeys("테스트 알람 자동 생성");
+        Thread.sleep(3000);
+
+        WebElement AlarmNativeRendering = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(3) > input"));
+        AlarmNativeRendering.clear();
+        AlarmNativeRendering.sendKeys("1");
+        Thread.sleep(3000);
+        //경고알람을 메일로 받기 위해서 경고알림 수치를 낮춥니다.
+
+        WebElement EmailSelect = driver.findElement(By.cssSelector("label[for='email-input']"));
+        EmailSelect.click();
+        WebElement AlarmMember = driver.findElement(By.cssSelector("button[class^='member']"));
+        AlarmMember.click();
+        WebElement AlarmMemberSelect = driver.findElement(By.cssSelector("label[for='allSelect']"));
+        AlarmMemberSelect.click();
+        Thread.sleep(3000);
+
+        WebElement AlarmSave = driver.findElement(By.cssSelector("button[class='submit']"));
+        AlarmSave.click();
+        Thread.sleep(3000);
+
+        //알람 수정
+        WebElement ModifyAlarm = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(2)"));
+        ModifyAlarm.click();
+        Thread.sleep(3000);
+
+        WebElement ModifyAlarmPolicyName2 = driver.findElement(By.cssSelector("input[class='name-input']"));
+        ModifyAlarmPolicyName2.clear();
+        Thread.sleep(2000);
+        ModifyAlarmPolicyName2.sendKeys("테스트 알람 자동 생성 후 수정됨");
+        WebElement AlarmResponseTime = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div > div:nth-of-type(3) > div:nth-of-type(3) > input"));
+        AlarmResponseTime.clear();
+        AlarmResponseTime.sendKeys("1");
+        WebElement ModifyAlarmSave = driver.findElement(By.cssSelector("button[class='submit']"));
+        ModifyAlarmSave.click();
+        Thread.sleep(3000);
+
+
+
+//        앱 버전별 보고서 확인
+        driver.get("https://account.imqa.io/user/login");
+
+        WebElement goMpm1 = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(2) > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > div"));
+        goMpm1.click();
+        Thread.sleep(3000);
 
 
         WebElement goReport = driver.findElement(By.cssSelector("html > body > div > div > header > div:nth-of-type(2) > div > ul > div:nth-of-type(5) > li > a > span"));
@@ -162,38 +173,98 @@ public class Selly {
 
 
 
-        //AppVer1
-        WebElement AppVerDropBox = driver.findElement(By.cssSelector("button[class='version-dropdown-btn']"));
-        AppVerDropBox.click();
+//        //AppVer1 (HY 프레딧 AOS 프로젝트 기준)
+//        WebElement AppVerDropBox = driver.findElement(By.cssSelector("button[class='version-dropdown-btn']"));
+//        AppVerDropBox.click();
+//
+//        WebElement AppVerDroBoxSelect1 = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(2) > ul > li:nth-of-type(1) > button"));
+//        AppVerDroBoxSelect1.click();
+//
+//        WebElement ReportAppVerApplyButton = driver.findElement(By.cssSelector("button[class='version-apply-btn']"));
+//        ReportAppVerApplyButton.click();
+//
+//        WebElement ReportFirstPage = driver.findElement(By.cssSelector("div[id='page1'] div[class='report-container']"));
+//        Thread.sleep(3000);
+//        File file=ReportFirstPage.getScreenshotAs(OutputType.FILE);
+//        FileUtils.copyFile(file, new File("app1logo.png"));
+//        Thread.sleep(4000);
+//        //파일 스크린샷 코드 추가
+//
+//        //AppVer2 (HY 프레딧 AOS 프로젝트 기준)
+//        WebElement AppVerDropBox2 = driver.findElement(By.cssSelector("button[class='version-dropdown-btn']"));
+//        AppVerDropBox2.click();
+//
+//        WebElement AppVerDroBoxSelect2 = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(2) > ul > li:nth-of-type(2) > button"));
+//        AppVerDroBoxSelect2.click();
+//
+//        WebElement ReportAppVerApplyButton2 = driver.findElement(By.cssSelector("button[class='version-apply-btn']"));
+//        ReportAppVerApplyButton2.click();
+//        Thread.sleep(3000);
+//
+//        WebElement ReportFirstPage2 = driver.findElement(By.cssSelector("div[id='page1'] div[class='report-container']"));
+//        Thread.sleep(3000);
+//        File file2 = ReportFirstPage2.getScreenshotAs(OutputType.FILE);
+//        FileUtils.copyFile(file2, new File("app2logo.png"));
 
-        WebElement AppVerDroBoxSelect1 = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(2) > ul > li:nth-of-type(1) > button"));
-        AppVerDroBoxSelect1.click();
 
-        WebElement ReportAppVerApplyButton = driver.findElement(By.cssSelector("button[class='version-apply-btn']"));
-        ReportAppVerApplyButton.click();
+//        //파일 업로드 테스트
+        driver.get("https://account.imqa.io/user/login");
 
-        WebElement ReportFirstPage = driver.findElement(By.cssSelector("div[id='page1'] div[class='report-container']"));
+        WebElement MangeDropButton = driver.findElement(By.cssSelector("div[class='project-dropdown'] a[class='dropdown-toggle']"));
+        MangeDropButton.click();
+
+        WebElement ProguardSettingButton = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(2) > table > tbody > tr:nth-of-type(1) > td:nth-of-type(5) > div > div > ul > li:nth-of-type(2) > a"));
+        ProguardSettingButton.click();
+
+
+        WebElement ProguardSelectButton = driver.findElement(By.cssSelector("input[id='mapping-file-input']"));
+        ProguardSelectButton.sendKeys("/Users/id_sucheol/Downloads/fragment-0410/2.0/testfile.txt");
         Thread.sleep(3000);
-        File file=ReportFirstPage.getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(file, new File("app1logo.png"));
-        Thread.sleep(4000);
-        //파일 스크린샷 코드 추가
 
-        //AppVer2
-        WebElement AppVerDropBox2 = driver.findElement(By.cssSelector("button[class='version-dropdown-btn']"));
-        AppVerDropBox2.click();
+        File file1 = new File("/Users/id_sucheol/Downloads/fragment-0410/2.0");
+        String lastFolderName = file1.getName(); // "2.0"
+        WebElement ProguardAppVersion = driver.findElement(By.cssSelector("input[class='version-input']"));
+        ProguardAppVersion.sendKeys(lastFolderName);
+        Thread.sleep(2000);
 
-        WebElement AppVerDroBoxSelect2 = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(2) > ul > li:nth-of-type(2) > button"));
-        AppVerDroBoxSelect2.click();
 
-        WebElement ReportAppVerApplyButton2 = driver.findElement(By.cssSelector("button[class='version-apply-btn']"));
-        ReportAppVerApplyButton2.click();
+
+        //todo 프론트에서 disabled인 버튼이 동작하지 않는 이슈가 있다.
+        WebElement ProguardUploadButton = driver.findElement(By.cssSelector("button[class='submit']"));
+        ProguardUploadButton.click();
+        ProguardUploadButton.wait(3);
+
+
+        Thread.sleep(3000);
+        Alert alert1 = driver.switchTo().alert();
+        alert1.accept();
+        System.out.println("확인버튼 누름");
         Thread.sleep(3000);
 
-        WebElement ReportFirstPage2 = driver.findElement(By.cssSelector("div[id='page1'] div[class='report-container']"));
+
+
+
+
+
+
+
+
+
+        //리버스 스택 분석
+        driver.get("https://account.imqa.io/user/login");
+
+        WebElement goMpm2 = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(2) > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > div"));
+        goMpm2.click();
         Thread.sleep(3000);
-        File file2 = ReportFirstPage2.getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(file2, new File("app2logo.png"));
+
+        WebElement goStatistic = driver.findElement(By.cssSelector("span[class$='opacity'] span[class='ctxt']"));
+        goStatistic.click();
+
+        WebElement SectionStaticsButton = driver.findElement(By.cssSelector("html > body > div > div > header > div:nth-of-type(2) > div > ul > div:nth-of-type(4) > li > ul > li:nth-of-type(1) > a > span"));
+        SectionStaticsButton.click();
+
+
+
 
 
     }
