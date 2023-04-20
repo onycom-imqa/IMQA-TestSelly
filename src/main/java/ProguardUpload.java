@@ -57,14 +57,14 @@ public class ProguardUpload {
 
         WebElement ProguardSelectButton = driver.findElement(By.cssSelector("input[id='mapping-file-input']"));
         ProguardSelectButton.sendKeys("/Users/id_sucheol/Downloads/fragment-0410/2.0/testfile.txt");
-        Thread.sleep(3000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         File file1 = new File("/Users/id_sucheol/Downloads/fragment-0410/2.0");
         String lastFolderName = file1.getName(); // "2.0"
         WebElement ProguardAppVersion = driver.findElement(By.cssSelector("input[class='version-input']"));
         ProguardAppVersion.sendKeys(lastFolderName);
 
-        Thread.sleep(2000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
 
@@ -73,11 +73,11 @@ public class ProguardUpload {
         ProguardUploadButton.wait(3);
 
 
-        Thread.sleep(3000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Alert alert1 = driver.switchTo().alert();
         alert1.accept();
         System.out.println("확인버튼 누름");
-        Thread.sleep(3000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         driver.get("https://account.imqa.io/user/login");
        }

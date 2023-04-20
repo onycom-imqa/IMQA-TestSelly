@@ -59,14 +59,14 @@ public class ReportAppVer {
         WebElement MoreProjectsButton = driver.findElement(By.cssSelector("button[class='more-btn']"));
         MoreProjectsButton.click();
 
-        Thread.sleep(3000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         WebElement TestMpm = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(3) > div:nth-of-type(2) > table > tbody > tr:nth-of-type(39) > td:nth-of-type(2)"));
         TestMpm.click();
 
         WebElement goReport = driver.findElement(By.cssSelector("html > body > div > div > header > div:nth-of-type(2) > div > ul > div:nth-of-type(5) > li > a > span"));
         goReport.click();
-        Thread.sleep(5000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
 
@@ -81,10 +81,10 @@ public class ReportAppVer {
         ReportAppVerApplyButton.click();
 
         WebElement ReportFirstPage = driver.findElement(By.cssSelector("div[id='page1'] div[class='report-container']"));
-        Thread.sleep(3000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         File file=ReportFirstPage.getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(file, new File("app1logo.png"));
-        Thread.sleep(4000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //파일 스크린샷 코드 추가
 
         //AppVer2 (HY 프레딧 AOS 프로젝트 기준)
@@ -96,7 +96,7 @@ public class ReportAppVer {
 
         WebElement ReportAppVerApplyButton2 = driver.findElement(By.cssSelector("button[class='version-apply-btn']"));
         ReportAppVerApplyButton2.click();
-        Thread.sleep(3000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         WebElement Report2ElementConfirm = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > table > tbody > tr > td:nth-of-type(2)"));
         Report2ElementConfirm.getText();
@@ -110,7 +110,7 @@ public class ReportAppVer {
 
 
         WebElement ReportFirstPage2 = driver.findElement(By.cssSelector("div[id='page1'] div[class='report-container']"));
-        Thread.sleep(3000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         File file2 = ReportFirstPage2.getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(file2, new File("app2logo.png"));
     }
