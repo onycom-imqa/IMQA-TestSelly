@@ -69,6 +69,7 @@ public class ReportAppVer {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
+        Thread.sleep(5000);
 
         //AppVer1 (HY 프레딧 AOS 프로젝트 기준)
         WebElement AppVerDropBox = driver.findElement(By.cssSelector("button[class='version-dropdown-btn']"));
