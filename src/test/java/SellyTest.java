@@ -3,12 +3,12 @@ import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.AssertJUnit;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.fail;
 
 public class SellyTest {
 
@@ -56,30 +56,13 @@ public class SellyTest {
             WebElement loginButton = driver.findElement(By.cssSelector("button[class='submit']"));
             loginButton.click();
 
-            Thread.sleep(4000);
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
-
-
-
-        Thread.sleep(3000);
-
-        WebElement AppVersion = driver.findElement(By.cssSelector("html > body > div > div > div:nth-of-type(1) > section > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div > div > ul > li:nth-of-type(3) > button > span"));
-        AppVersion.click();
-
-        Thread.sleep(3000);
 
             System.out.println("MPM board");
 
 
-            WebElement SummaryButton = driver.findElement(By.cssSelector("span[class$='center']"));
-            SummaryButton.click();
-            Thread.sleep(3000);
-
-
-            WebElement SummaryClose = driver.findElement(By.cssSelector("img[style='cursor: pointer; position: absolute; top: 0px; left: 600px;']"));
-            SummaryClose.click();
-            Thread.sleep(2000);
 
 //        알람 등록
             WebElement AlarmButton = driver.findElement(By.cssSelector("html > body > div > div > header > div:nth-of-type(2) > div > ul > div:nth-of-type(6) > li"));
@@ -113,6 +96,16 @@ public class SellyTest {
             Thread.sleep(3000);
 
             WebElement AlarmSave = driver.findElement(By.cssSelector("button[class='submit']"));
+
+            if (isElementPresent(By.cssSelector("input[class^='name-input']"))){
+                WebElement AlarmPolicyTitleCheck = driver.findElement(By.cssSelector("input[class^='name-input']"));
+                if (AlarmPolicyTitleCheck.isEnabled())
+                    AlarmPolicyTitleCheck.click();
+                System.out.println("알림정책에 제목이 존재합니다");
+            }else {
+                fail("알림정책 제목이 없습니다");
+            }
+
             AlarmSave.click();
             Thread.sleep(3000);
 
@@ -202,7 +195,7 @@ public class SellyTest {
                     AppVersionSelect.click();
                 System.out.println("앱 버전 하나를 확인했습니다..");
             }else {
-                AssertJUnit.fail("앱 버전이 없습니다");
+                fail("앱 버전이 없습니다");
             }
 
         WebElement ReportAppVerApplyButton = driver.findElement(By.cssSelector("button[class='version-apply-btn']"));
@@ -217,7 +210,7 @@ public class SellyTest {
 
                 System.out.println("네이티브 화면 로딩시간 확인");
             }else {
-                AssertJUnit.fail("네이티브 화면 로딩시간 문제 발생");
+                fail("네이티브 화면 로딩시간 문제 발생");
             }
             ReportElementConfirm.getText();
 
@@ -228,7 +221,7 @@ public class SellyTest {
                     ReportEle2.getText();
                 System.out.println("웹뷰 화면 로딩시간 확인");
             }else {
-                AssertJUnit.fail("웹뷰 화면 로딩시간 문제 발생");
+                fail("웹뷰 화면 로딩시간 문제 발생");
             }
             ReportElementConfirm2.getText();
 
@@ -240,7 +233,7 @@ public class SellyTest {
                     ReportEle3.getText();
                 System.out.println("응답시간 확인");
             }else {
-                AssertJUnit.fail("응답시간 문제 발생");
+                fail("응답시간 문제 발생");
             }
             ReportElementConfirm3.getText();
 
@@ -252,7 +245,7 @@ public class SellyTest {
                     ReportEle4.getText();
                 System.out.println("CPU 사용량 확인");
             }else {
-                AssertJUnit.fail("CPU 사용량 문제 확인");
+                fail("CPU 사용량 문제 확인");
             }
             ReportElementConfirm4.getText();
 
@@ -263,7 +256,7 @@ public class SellyTest {
                     ReportEle5.getText();
                 System.out.println("메모리 사용량 확인");
             }else {
-                AssertJUnit.fail("메모리 사용량 문제 확인");
+                fail("메모리 사용량 문제 확인");
             }
             ReportElementConfirm5.getText();
 
@@ -288,7 +281,7 @@ public class SellyTest {
                     AppVersionSelect2.click();
                 System.out.println("또 다른 앱버전을 확인했습니다..");
             }else {
-                AssertJUnit.fail("두번째 앱 버전이 없습니다");
+                fail("두번째 앱 버전이 없습니다");
             }
         AppVerDroBoxSelect2.click();
 
