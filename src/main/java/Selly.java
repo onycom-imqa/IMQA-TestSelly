@@ -7,18 +7,14 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-
+import java.util.concurrent.TimeUnit;
 
 
 public class Selly {
     private WebDriver driver;
-
-    int projectScanIndex = 0;
 
 
     public static void main(String[] args) throws Exception {
@@ -33,6 +29,7 @@ public class Selly {
 
     }
 
+
     public Selly() {
 
         ChromeOptions option = new ChromeOptions();
@@ -40,7 +37,7 @@ public class Selly {
 //        option.addArguments("headless");
         driver = new ChromeDriver(option);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://account.imqa.io/user/login");
 
     }
@@ -49,275 +46,218 @@ public class Selly {
 
         WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
         idField.sendKeys("su10king@gmail.com");
+        //devload@naver.com
 
         WebElement passwordField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(1) > input"));
-        passwordField.sendKeys("sucheol9608");
+        passwordField.sendKeys("sucheol9608!");
 
 
         WebElement loginButton = driver.findElement(By.cssSelector("button[class='submit']"));
         loginButton.click();
 
+//        WebDriverWait waitTimer = new WebDriverWait(driver, 6);
+//        waitTimer.until(ExpectedConditions.textToBePresentInElement(passwordField, "sucheol9608!"));
 
+//        Thread.sleep(4000);
+//
+//        WebElement MoreProjectsButton = driver.findElement(By.cssSelector("button[class='more-btn']"));
+//        MoreProjectsButton.click();
+//
+//        Thread.sleep(3000);
+//
+//        WebElement TestMpm = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(3) > div:nth-of-type(2) > table > tbody > tr:nth-of-type(39) > td:nth-of-type(2)"));
+//        TestMpm.click();
+//
+
+        WebElement goMpm = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(2) > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > div"));
+        goMpm.click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+
+
+
+        WebElement SummaryButton = driver.findElement(By.cssSelector("span[class$='center']"));
+        SummaryButton.click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+
+        WebElement SummaryClose = driver.findElement(By.cssSelector("img[style='cursor: pointer; position: absolute; top: 0px; left: 600px;']"));
+        SummaryClose.click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+//        알람 등록
+        WebElement AlarmButton = driver.findElement(By.cssSelector("html > body > div > div > header > div:nth-of-type(2) > div > ul > div:nth-of-type(6) > li"));
+        AlarmButton.click();
+
+//        Thread.sleep(3000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebElement AlarmPolicy = driver.findElement(By.cssSelector("a[class='out']"));
+        AlarmPolicy.click();
+
+
+        WebElement AddAlarm = driver.findElement(By.cssSelector("button[class='add-btn']"));
+        AddAlarm.click();
+//        Thread.sleep(3000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        WebElement AlarmPolicyName = driver.findElement(By.cssSelector("input[class^='name-input']"));
+        AlarmPolicyName.sendKeys("테스트 알람 자동 생성");
+//        Thread.sleep(3000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        WebElement AlarmNativeRendering = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(3) > input"));
+        AlarmNativeRendering.clear();
+        AlarmNativeRendering.sendKeys("1");
+//        Thread.sleep(3000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //경고알람을 메일로 받기 위해서 경고알림 수치를 낮춥니다.
+
+        WebElement EmailSelect = driver.findElement(By.cssSelector("label[for='email-input']"));
+        EmailSelect.click();
+        WebElement AlarmMember = driver.findElement(By.cssSelector("button[class^='member']"));
+        AlarmMember.click();
+        WebElement AlarmMemberSelect = driver.findElement(By.cssSelector("label[for='allSelect']"));
+        AlarmMemberSelect.click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        WebElement AlarmSave = driver.findElement(By.cssSelector("button[class='submit']"));
+        AlarmSave.click();
+//        Thread.sleep(3000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        //알람 수정
+        WebElement ModifyAlarm = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(2)"));
+        ModifyAlarm.click();
+//        Thread.sleep(3000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+
+        WebElement ModifyAlarmPolicyName2 = driver.findElement(By.cssSelector("input[class='name-input']"));
+        ModifyAlarmPolicyName2.clear();
+//        Thread.sleep(2000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        ModifyAlarmPolicyName2.sendKeys("테스트 알람 자동 생성 후 수정됨");
+        WebElement AlarmResponseTime = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div > div:nth-of-type(3) > div:nth-of-type(3) > input"));
+        AlarmResponseTime.clear();
+        AlarmResponseTime.sendKeys("1");
+        WebElement ModifyAlarmSave = driver.findElement(By.cssSelector("button[class='submit']"));
+        ModifyAlarmSave.click();
+//        Thread.sleep(3000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+
+
+//        앱 버전별 보고서 확인
+        driver.get("https://account.imqa.io/user/login");
+
+        WebElement goMpm1 = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(2) > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > div"));
+        goMpm1.click();
         Thread.sleep(3000);
 
-        WebElement cardViewButton = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(3) > div:nth-of-type(1) > span:nth-of-type(2) > a:nth-of-type(2)"));
-        cardViewButton.click();
+
+        WebElement goReport = driver.findElement(By.cssSelector("html > body > div > div > header > div:nth-of-type(2) > div > ul > div:nth-of-type(5) > li > a > span"));
+        goReport.click();
+        Thread.sleep(5000);
+
+
+
+//        //AppVer1 (HY 프레딧 AOS 프로젝트 기준)
+//        WebElement AppVerDropBox = driver.findElement(By.cssSelector("button[class='version-dropdown-btn']"));
+//        AppVerDropBox.click();
+//
+//        WebElement AppVerDroBoxSelect1 = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(2) > ul > li:nth-of-type(1) > button"));
+//        AppVerDroBoxSelect1.click();
+//
+//        WebElement ReportAppVerApplyButton = driver.findElement(By.cssSelector("button[class='version-apply-btn']"));
+//        ReportAppVerApplyButton.click();
+//
+//        WebElement ReportFirstPage = driver.findElement(By.cssSelector("div[id='page1'] div[class='report-container']"));
+//        Thread.sleep(3000);
+//        File file=ReportFirstPage.getScreenshotAs(OutputType.FILE);
+//        FileUtils.copyFile(file, new File("app1logo.png"));
+//        Thread.sleep(4000);
+//        //파일 스크린샷 코드 추가
+//
+//        //AppVer2 (HY 프레딧 AOS 프로젝트 기준)
+//        WebElement AppVerDropBox2 = driver.findElement(By.cssSelector("button[class='version-dropdown-btn']"));
+//        AppVerDropBox2.click();
+//
+//        WebElement AppVerDroBoxSelect2 = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(2) > ul > li:nth-of-type(2) > button"));
+//        AppVerDroBoxSelect2.click();
+//
+//        WebElement ReportAppVerApplyButton2 = driver.findElement(By.cssSelector("button[class='version-apply-btn']"));
+//        ReportAppVerApplyButton2.click();
+//        Thread.sleep(3000);
+//
+//        WebElement ReportFirstPage2 = driver.findElement(By.cssSelector("div[id='page1'] div[class='report-container']"));
+//        Thread.sleep(3000);
+//        File file2 = ReportFirstPage2.getScreenshotAs(OutputType.FILE);
+//        FileUtils.copyFile(file2, new File("app2logo.png"));
+
+
+//        //파일 업로드 테스트
+        driver.get("https://account.imqa.io/user/login");
+
+        WebElement MangeDropButton = driver.findElement(By.cssSelector("div[class='project-dropdown'] a[class='dropdown-toggle']"));
+        MangeDropButton.click();
+
+        WebElement ProguardSettingButton = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(2) > table > tbody > tr:nth-of-type(1) > td:nth-of-type(5) > div > div > ul > li:nth-of-type(2) > a"));
+        ProguardSettingButton.click();
+
+
+        WebElement ProguardSelectButton = driver.findElement(By.cssSelector("input[id='mapping-file-input']"));
+        ProguardSelectButton.sendKeys("/Users/id_sucheol/Downloads/fragment-0410/2.0/testfile.txt");
         Thread.sleep(3000);
-        List<WebElement> projectList = driver.findElements(By.cssSelector("div > .project-view-card"));
-        Integer projectSize = projectList.size();
-        System.out.println("프로젝트 List " + projectSize);
 
-        while (true) {
-            try{
-
-                for(int i = projectScanIndex; i < projectSize; i++) {
-                    projectScanIndex = i;
-//                    List<LayoutBlock> blocks = new ArrayList<>();
-
-                    WebElement projectNameElement = driver.findElement(By.cssSelector(  "html > body > div:nth-of-type(1) > div > div:nth-of-type(3) > div:nth-of-type(" + (3 + i) + ") .project-card-title .text-title"));
-                    WebElement mpmButton;
-
-                    boolean isOnlyCrash = true;
-
-                    try {
-                        mpmButton = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(3) > div:nth-of-type(" + (3 + i) + ") > div > div:nth-of-type(1) > span:nth-of-type(3) > .btn.mpm.active"));
-
-                        if (mpmButton == null) {
-                            //is not mpm project
-
-                            continue;
-                        }
-
-                        isOnlyCrash = false;
-                    }catch (Exception e) {
-                        //not found
-                    }
-
-
-                    String projectName = projectNameElement.getText();
-                    System.out.println(getCurrentDateTime("yyyy-MM-dd HH:mm:ss"));
-                    System.out.print("프로젝트명 : '" + projectName + "'  ");
-                    String title = "프로젝트명 : `" + projectName + "`  ";
-
-                    projectNameElement.click();
-                    Thread.sleep(3000);
-
-                    if(!isOnlyCrash) {
-                        String userCount = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(1) > section > div > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2) > div:nth-of-type(1) > p")).getText();
-                        String runCount = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(1) > section > div > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2) > div:nth-of-type(2) > p")).getText();
-                        String plan = "유료 플랜";
-                        try {
-                            if ("무료 플랜".equals(driver.findElement(By.cssSelector("html > body > div > div > header > div:nth-of-type(3) > button")).getText())) {
-                                plan = "무료 플랜";
-                            }
-                        }catch (Exception e) {}
-                        System.out.println("`" + plan + "`");
-//                        blocks.add(HeaderBlock.builder().text(PlainTextObject.builder().text(title + "`" + plan + "`").build()).build());
-//                        blocks.add(DividerBlock.builder().build());
-                        System.out.println("MPM");
-//                        blocks.add(SectionBlock.builder().text(MarkdownTextObject.builder().text("*MPM*").build()).build());
-                        switch (plan) {
-                            case "유료 플랜":
-                                String firstAppVersion =  driver.findElement(By.cssSelector("html > body > div > div > div:nth-of-type(1) > section > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div > button > span")).getText().toString();
-                                System.out.println("    앱버전 : " + firstAppVersion);
-                                System.out.println("        유저수 : " + userCount);
-                                System.out.println("        실행수 : " + runCount);
-
-//                                String fileName = 스크린샷(driver, projectName, "DashBoard");
-//
-//                                if(userCount.equals("0")) {
-//                                    blocks.add(SectionBlock.builder().fields(Arrays.asList(
-//                                            MarkdownTextObject.builder().text("*앱버전* : " + firstAppVersion).build(),
-//                                            MarkdownTextObject.builder().text("*유저수* : " + userCount).build(),
-//                                            MarkdownTextObject.builder().text("*실행수* : " + runCount).build()
-//                                    )).accessory(ImageElement.builder().imageUrl(STORAGE_URL + fileName).altText(fileName).build()).build());
-//                                } else {
-//                                    blocks.add(SectionBlock.builder().fields(Arrays.asList(
-//                                            MarkdownTextObject.builder().text("*앱버전* : " + firstAppVersion).build(),
-//                                            MarkdownTextObject.builder().text("*유저수* : " + userCount).build(),
-//                                            MarkdownTextObject.builder().text("*실행수* : " + runCount).build()
-//                                    )).build());
-//                                    blocks.add(ImageBlock.builder().imageUrl(STORAGE_URL + fileName).altText(fileName).title(PlainTextObject.builder().text(fileName).emoji(true).build()).build());
-//                                }
-
-                                Thread.sleep(1000);
-                                List<WebElement> appVersionListElement = driver.findElements(By.cssSelector("html > body > div > div > div:nth-of-type(1) > section > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div > div > ul > li"));
-                                for(int j = 1; j < appVersionListElement.size(); j++) {
-                                    try {
-                                        driver.findElement(By.cssSelector("html > body > div > div > div:nth-of-type(1) > section > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div > button")).click();
-                                        Thread.sleep(1000);
-                                        driver.findElement(By.cssSelector("html > body > div > div > div:nth-of-type(1) > section > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div > div > ul > li:nth-of-type(" + (j + 1) + ") > button")).click();
-                                        Thread.sleep(2000);
-                                        String appVersion = driver.findElement(By.cssSelector("html > body > div > div > div:nth-of-type(1) > section > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div > button > span")).getText().toString();
-                                        System.out.println("    앱버전 : " + appVersion);
-                                        Thread.sleep(2000);
-                                        userCount = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(1) > section > div > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2) > div:nth-of-type(1) > p")).getText();
-                                        runCount = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(1) > section > div > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2) > div:nth-of-type(2) > p")).getText();
-                                        System.out.println("        유저수 : " + userCount);
-                                        System.out.println("        실행수 : " + runCount);
-
-//
-//                                        fileName = 스크린샷(driver, projectName, "DashBoard");
-//
-//                                        if(userCount.equals("0")) {
-//                                            blocks.add(SectionBlock.builder().fields(Arrays.asList(
-//                                                    MarkdownTextObject.builder().text("*앱버전* : " + appVersion).build(),
-//                                                    MarkdownTextObject.builder().text("*유저수* : " + userCount).build(),
-//                                                    MarkdownTextObject.builder().text("*실행수* : " + runCount).build()
-//                                            )).accessory(ImageElement.builder().imageUrl(STORAGE_URL + fileName).altText(fileName).build()).build());
-//                                        } else {
-//                                            blocks.add(SectionBlock.builder().fields(Arrays.asList(
-//                                                    MarkdownTextObject.builder().text("*앱버전* : " + appVersion).build(),
-//                                                    MarkdownTextObject.builder().text("*유저수* : " + userCount).build(),
-//                                                    MarkdownTextObject.builder().text("*실행수* : " + runCount).build()
-//                                            )).build());
-//                                            blocks.add(ImageBlock.builder().imageUrl(STORAGE_URL + fileName).altText(fileName).title(PlainTextObject.builder().text(fileName).emoji(true).build()).build());
-//                                        }
-
-                                        Thread.sleep(1000);
-                                    }catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-                                break;
-                            case "무료 플랜":
-                                System.out.println("    유저수 : " + userCount);
-                                System.out.println("    실행수 : " + runCount);
-//
-//                                fileName = 스크린샷(driver, projectName, "DashBoard");
-//
-//                                if(userCount.equals("0")) {
-//                                    blocks.add(SectionBlock.builder().fields(Arrays.asList(
-//                                            MarkdownTextObject.builder().text("*유저수* : " + userCount).build(),
-//                                            MarkdownTextObject.builder().text("*실행수* : " + runCount).build()
-//                                    )).accessory(ImageElement.builder().imageUrl(STORAGE_URL + fileName).altText(fileName).build()).build());
-//                                } else {
-//                                    blocks.add(SectionBlock.builder().fields(Arrays.asList(
-//                                            MarkdownTextObject.builder().text("*유저수* : " + userCount).build(),
-//                                            MarkdownTextObject.builder().text("*실행수* : " + runCount).build()
-//                                    )).build());
-//                                    blocks.add(ImageBlock.builder().imageUrl(STORAGE_URL + fileName).altText(fileName).title(PlainTextObject.builder().text(fileName).emoji(true).build()).build());
-//                                }
-//
-//                                break;
-                        }
-                    } else {
-//                        blocks.add(HeaderBlock.builder().text(PlainTextObject.builder().text(title).build()).build());
-//                        blocks.add(DividerBlock.builder().build());
-                    }
-
-
-                    Thread.sleep(3000);
-                    driver.get("https://account.imqa.io/user/login");
-                    프로젝트전체보기(driver);
-//                    blocks.add(DividerBlock.builder().build());
-                    Thread.sleep(10000);
-                    //crash
-                    System.out.println("Crash");
-//                    blocks.add((LayoutBlock) SectionBlock.builder().text(MarkdownTextObject.builder().text("*Crash*").build()).build());
-
-                    WebElement crashButton = driver.findElement(By.cssSelector(     "html > body > div:nth-of-type(1) > div > div:nth-of-type(3) > div:nth-of-type(" + (3 + i) + ") > div > div:nth-of-type(1) > span:nth-of-type(3) > a:nth-of-type(2) > span"));
-                    crashButton.click();
-                    Thread.sleep(2000);
-                    String firstAppVersion =  driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(1) > button")).getText().toString();
-                    System.out.println("    앱버전 : " + firstAppVersion);
-                    System.out.println("        주간크래시 : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > span")).getText());
-                    System.out.println("        주간이용자수 : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > span")).getText());
-                    System.out.println("        주간실행수 : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > span")).getText());
-//                    String fileName = 스크린샷(driver, projectName, "Crash");
-//                    if(driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > span")).getText().equals("0") || driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > span")).getText().equals("데이터가 없습니다.")) {
-//                        blocks.add(SectionBlock.builder().fields(Arrays.asList(
-//                                MarkdownTextObject.builder().text("*앱버전* : " + firstAppVersion).build(),
-//                                MarkdownTextObject.builder().text("*주간크래시* : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > span")).getText()).build(),
-//                                MarkdownTextObject.builder().text("*주간이용자수* : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > span")).getText()).build(),
-//                                MarkdownTextObject.builder().text("*주간실행수* : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > span")).getText()).build()
-//                        )).accessory(ImageElement.builder().imageUrl(STORAGE_URL + fileName).altText(fileName).build()).build());
-//                    } else {
-//                        blocks.add(SectionBlock.builder().fields(Arrays.asList(
-//                                MarkdownTextObject.builder().text("*앱버전* : " + firstAppVersion).build(),
-//                                MarkdownTextObject.builder().text("*주간크래시* : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > span")).getText()).build(),
-//                                MarkdownTextObject.builder().text("*주간이용자수* : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > span")).getText()).build(),
-//                                MarkdownTextObject.builder().text("*주간실행수* : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > span")).getText()).build()
-//                        )).build());
-//                        blocks.add(ImageBlock.builder().imageUrl(STORAGE_URL + fileName).altText(fileName).title(PlainTextObject.builder().text(fileName).emoji(true).build()).build());
-//                    }
+        File file1 = new File("/Users/id_sucheol/Downloads/fragment-0410/2.0");
+        String lastFolderName = file1.getName(); // "2.0"
+        WebElement ProguardAppVersion = driver.findElement(By.cssSelector("input[class='version-input']"));
+        ProguardAppVersion.sendKeys(lastFolderName);
+        Thread.sleep(2000);
 
 
 
-                    List<WebElement> appVersionListElement = driver.findElements(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(1) > ul > li"));
-                    for(int j = 1; j < appVersionListElement.size(); j++) {
-                        try {
-                            Thread.sleep(2000);
-                            driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(1) > button")).click();
-                            Thread.sleep(1000);
-                            String appVersion = driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(1) > ul > li:nth-of-type(" + (j+1) +") > a")).getText();
-                            driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(1) > ul > li:nth-of-type(" + (j+1) +")")).click();
-                            Thread.sleep(3000);
-                            System.out.println("    앱버전 : " + appVersion);
-                            System.out.println("        주간크래시 : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > span")).getText());
-                            System.out.println("        주간이용자수 : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > span")).getText());
-                            System.out.println("        주간실행수 : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > span")).getText());
-
-//                            fileName = 스크린샷(driver, projectName, "Crash");
-//                            if(driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > span")).getText().equals("0") || driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > span")).getText().equals("데이터가 없습니다.")) {
-//                                blocks.add(SectionBlock.builder().fields(Arrays.asList(
-//                                        MarkdownTextObject.builder().text("*앱버전* : " + appVersion).build(),
-//                                        MarkdownTextObject.builder().text("*주간크래시* : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > span")).getText()).build(),
-//                                        MarkdownTextObject.builder().text("*주간이용자수* : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > span")).getText()).build(),
-//                                        MarkdownTextObject.builder().text("*주간실행수* : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > span")).getText()).build()
-//                                )).accessory(ImageElement.builder().imageUrl(STORAGE_URL + fileName).altText(fileName).build()).build());
-//                            } else {
-//                                blocks.add(SectionBlock.builder().fields(Arrays.asList(
-//                                        MarkdownTextObject.builder().text("*앱버전* : " + appVersion).build(),
-//                                        MarkdownTextObject.builder().text("*주간크래시* : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > span")).getText()).build(),
-//                                        MarkdownTextObject.builder().text("*주간이용자수* : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > span")).getText()).build(),
-//                                        MarkdownTextObject.builder().text("*주간실행수* : " + driver.findElement(By.cssSelector("html > body > section > section > section > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > span")).getText()).build()
-//                                )).build());
-//                                blocks.add(ImageBlock.builder().imageUrl(STORAGE_URL + fileName).altText(fileName).title(PlainTextObject.builder().text(fileName).emoji(true).build()).build());
-//                            }
+        //todo 프론트에서 disabled인 버튼이 동작하지 않는 이슈가 있다.
+        WebElement ProguardUploadButton = driver.findElement(By.cssSelector("button[class='submit']"));
+        ProguardUploadButton.click();
+        ProguardUploadButton.wait(3);
 
 
-                            Thread.sleep(2000);
-                        }catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    Thread.sleep(3000);
-
-                    System.out.println();
-                    System.out.println();
-                    driver.get("https://account.imqa.io/user/login");
-                    Thread.sleep(5000);
-                    프로젝트전체보기(driver);
-//
-//                    try {
-//
-//                        // Build a request object
-//                        ChatPostMessageRequest request = ChatPostMessageRequest.builder()
-//                                .channel("#saas_scanner")
-//                                .blocks(blocks)
-//                                .build();
-//
-//                        ChatPostMessageResponse response = methods.chatPostMessage(request);
-//                        System.out.println(response.getMessage());
-//                        System.err.println(response.getError());
-//                        System.out.println(blocks.toString());
-//                    }catch (Exception e) {
-//
-//                    }
+        Thread.sleep(3000);
+        Alert alert1 = driver.switchTo().alert();
+        alert1.accept();
+        System.out.println("확인버튼 누름");
+        Thread.sleep(3000);
 
 
 
-                    Thread.sleep(20000);
-                }
-                projectScanIndex= 0;
-            }catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+
+
+
+
+
+
+
+        //리버스 스택 분석
+        driver.get("https://account.imqa.io/user/login");
+
+        WebElement goMpm2 = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(2) > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > div"));
+        goMpm2.click();
+        Thread.sleep(3000);
+
+        WebElement goStatistic = driver.findElement(By.cssSelector("span[class$='opacity'] span[class='ctxt']"));
+        goStatistic.click();
+
+        WebElement SectionStaticsButton = driver.findElement(By.cssSelector("html > body > div > div > header > div:nth-of-type(2) > div > ul > div:nth-of-type(4) > li > ul > li:nth-of-type(1) > a > span"));
+        SectionStaticsButton.click();
+
+
+
+
+
     }
+
+
     public void 프로젝트전체보기(WebDriver driver) throws InterruptedException {
         WebElement cardViewButton = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(3) > div:nth-of-type(1) > span:nth-of-type(2) > a:nth-of-type(2)"));
         cardViewButton.click();
@@ -334,16 +274,6 @@ public class Selly {
         String filePath = "C:\\imqa\\" + fileName;
         File output =  new File(filePath);
         FileUtils.copyFile(file,output);
-//        BlobContainerClient blobContainerClient
-
-//        BlobClient blobClient = new BlobClientBuilder()
-//                .connectionString("DefaultEndpointsProtocol=https;AccountName=imqawebviewagent;AccountKey=nAassg1FIE+X/THZG10Zcri1L3x27VINYqE1Hmeu7UMCFtTi2tit9IK4MTF7kzicYW9v/TE6Ce4pI+/CvCB7HA==;EndpointSuffix=core.windows.net")
-//                .containerName("slack")
-//                .blobName(fileName)
-//                .buildClient();
-//
-////        BlobClient blobClient = blobContainerClient.getBlobClient( projectName + "_" + screenName + "_"  + getCurrentDateTime() + ".png");
-//        blobClient.uploadFromFile(filePath);
         return  fileName;
     }
 
@@ -359,6 +289,28 @@ public class Selly {
                 currentLocale);
         return formatter.format(today);
     }
+
+//    public void 알람등록(WebDriver driver) throws InterruptedException {
+//        WebElement AlarmButton = driver.findElement(By.xpath("//input[@text}"));
+//        AlarmButton.click();
+//        WebElement addButton = driver.findElement(By.className("add-btn"));
+//        addButton.click();
+////        WebElement AlarmName = driver.findElement(By.className("name-input invalid-input"));
+////        AlarmName.sendKeys("알람 자동화 테스트");
+//        WebElement AlarmElement = driver.findElement(By.tagName("number"));
+//        AlarmElement.clear();
+//        AlarmElement.sendKeys("1");
+//        WebElement selectChannel = driver.findElement(By.linkText("/img/icon-check.a3f7142a.svg"));
+//        selectChannel.click();
+//        WebElement AlarmMemberToggle = driver.findElement(By.className("member_dropdown-btn"));
+//        AlarmMemberToggle.click();
+//        WebElement selectMember = driver.findElement(By.id("allSelect"));
+//        selectMember.click();
+//        WebElement Submit = driver.findElement(By.className("submit"));
+//        Submit.click();
+//    }
+
+
 }
 
 
