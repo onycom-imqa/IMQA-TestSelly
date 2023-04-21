@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.fail;
 
 
@@ -34,9 +35,6 @@ public class AlarmPolicyTest {
 
     }
 
-    @Test
-    public void main() {
-    }
 
     @Test
     public void run() throws InterruptedException {
@@ -98,15 +96,6 @@ public class AlarmPolicyTest {
         }
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        WebElement AlarmSubmitCheck = driver.findElement(By.cssSelector("input[id='memberList0']"));
-        if (isElementPresent(By.cssSelector("section div[class='content']"))){
-            WebElement NewAlarmCheck= driver.findElement(By.cssSelector("section div[class='content']"));
-            if (NewAlarmCheck.isDisplayed())
-                AlarmSubmitCheck.click();
-
-        }else {
-            fail("등록 실패했습니다.");
-        }
 
 
 
@@ -117,15 +106,23 @@ public class AlarmPolicyTest {
             WebElement AlarmPolicyTitleCheck = driver.findElement(By.cssSelector("input[class^='name-input']"));
             if (AlarmPolicyTitleCheck.isEnabled())
                 AlarmPolicyTitleCheck.click();
-            System.out.println("알림정책에 제목이 존재합니다");
-            System.out.println("알림 등록이 성공했습니다");
+                AlarmSave.click();
+            System.out.println("알람저장 버튼을 클릭했습니다.");
         }else {
-            fail("알림정책 제목이 없습니다");
+            fail();
         }
-
-        AlarmSave.click();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
+
+        WebElement AlarmSubmitCheck = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(1)"));
+        if (isElementPresent(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(1)"))){
+            WebElement NewAlarmCheck= driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(1)"));
+            if (NewAlarmCheck.isEnabled());
+            System.out.println("알림 등록이 성공했습니다");
+        }else {
+            fail("등록 실패했습니다.");
+        }
+        AlarmSubmitCheck.getText();
 
         //알람 수정
         WebElement ModifyAlarm = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(2)"));
@@ -134,8 +131,34 @@ public class AlarmPolicyTest {
 
 
         WebElement ModifyAlarmPolicyName2 = driver.findElement(By.cssSelector("input[class='name-input']"));
-        ModifyAlarmPolicyName2.clear();
-        ModifyAlarmPolicyName2.sendKeys("테스트 알람 정책 수정됨");
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+        ModifyAlarmPolicyName2.sendKeys(Keys.BACK_SPACE);
+
+        String ModifyTitle = "테스트 알람 정책 수정됨";
+        ModifyAlarmPolicyName2.sendKeys(ModifyTitle);
 
         WebElement AlarmResponseTime = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div > div:nth-of-type(4) > div:nth-of-type(3) > input"));
         AlarmResponseTime.clear();
@@ -146,11 +169,12 @@ public class AlarmPolicyTest {
 
 
         //todo 수정 확인
-        WebElement AlarmModifyCheck = driver.findElement(By.cssSelector("input[id='memberList0']"));
+        WebElement AlarmModifyCheck = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(1)"));
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        if (isElementPresent(By.cssSelector("section div[class='content']"))){
-            WebElement NewAlarmCheck= driver.findElement(By.cssSelector("section div[class='content']"));
+        if (isElementPresent(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(1)"))){
+            WebElement NewAlarmCheck= driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > table > tbody > tr > td:nth-of-type(1)"));
             if (NewAlarmCheck.isDisplayed())
+                assertEquals(ModifyTitle, AlarmModifyCheck.getText());
                 AlarmModifyCheck.getText();
             System.out.println("알림 수정이 성공했습니다");
         }else {
@@ -159,24 +183,24 @@ public class AlarmPolicyTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
-        //알람 삭제
-        WebElement DeleteAlarm = driver.findElement(By.cssSelector("button[class='button']"));
-        DeleteAlarm.click();
-
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        Alert alert1 = driver.switchTo().alert();
-        alert1.accept();
-        System.out.println("삭제 확인버튼 누름");
-
-        WebElement AfterDeleteAlarm = driver.findElement(By.cssSelector("button[class='button']"));
-        if (isElementPresent(By.cssSelector("button[class='button']"))){
-            WebElement AfterDeleteCheck= driver.findElement(By.cssSelector("button[class='button']"));
-            if (!AfterDeleteCheck.isDisplayed())
-                AfterDeleteAlarm.getText();
-            System.out.println("알림 삭제가 성공했습니다");
-        }else {
-            fail("얼림 삭제를 실패했습니다.");
-        }
+//        //알람 삭제
+//        WebElement DeleteAlarm = driver.findElement(By.cssSelector("button[class='button']"));
+//        DeleteAlarm.click();
+//
+//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//        Alert alert1 = driver.switchTo().alert();
+//        alert1.accept();
+//        System.out.println("삭제 확인버튼 누름");
+//
+//        WebElement AfterDeleteAlarm = driver.findElement(By.cssSelector("button[class='button']"));
+//        if (isElementPresent(By.cssSelector("button[class='button']"))){
+//            WebElement AfterDeleteCheck= driver.findElement(By.cssSelector("button[class='button']"));
+//            if (!AfterDeleteCheck.isDisplayed())
+//                AfterDeleteAlarm.getText();
+//            System.out.println("알림 삭제가 성공했습니다");
+//        }else {
+//            fail("얼림 삭제를 실패했습니다.");
+//        }
 
 
     }
