@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -69,23 +70,27 @@ public class MpmStackTrace {
             WebElement goDistributionAnalysis = driver.findElement(By.cssSelector("html > body > div > div > header > div:nth-of-type(2) > div > ul > div:nth-of-type(4) > li > ul > li:nth-of-type(1) > a > span"));
             goDistributionAnalysis.click();
 
+            WebElement AnalysisDatePicker = driver.findElement(By.cssSelector("div[class='date-info'] span"));
+            AnalysisDatePicker.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-            WebElement TimeLine15_16 = driver.findElement(By.cssSelector("rect[data-index='31']"));
-            TimeLine15_16.click();
+            WebElement SelectDate = driver.findElement(By.cssSelector("html > body > div > div > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div:nth-of-type(1) > div:nth-of-type(2) > div > div:nth-of-type(2) > div > span:nth-of-type(34)"));
+            SelectDate.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            Thread.sleep(4000);
 
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            WebElement TimeLine15_16_pixel = driver.findElement(By.cssSelector("rect[data-index='31']"));
+            TimeLine15_16_pixel.click();
+            Thread.sleep(4000);
+
+
+
             WebElement P95Graph = driver.findElement(By.cssSelector("rect[class*='p95']"));
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             P95Graph.click();
+          
 
-
-
-
-//            드래그할 Element가 없음
-//            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//            WebElement source = driver.findElement(By.cssSelector("html > body > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div > div:nth-of-type(2) > div > div:nth-of-type(1) > div > div:nth-of-type(2) > svg > g:nth-of-type(3) > line:nth-of-type(1)"));
-//            WebElement target = driver.findElement(By.cssSelector("html > body > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div > div:nth-of-type(2) > div > div:nth-of-type(1) > div > div:nth-of-type(2) > svg > g:nth-of-type(3) > line:nth-of-type(7)"));
-//            Actions DragBuilder = new Actions(driver);
-//            DragBuilder.dragAndDrop(source, target).perform();
 
 
 //프레딧 AOS 2023.04.21 15:30~16:00 중 15:57 픽셀
