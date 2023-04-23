@@ -40,6 +40,7 @@ public class MpmStackTraceTest {
 
     @Test
     public void run() throws InterruptedException {
+
         WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
         idField.sendKeys("devload@naver.com");
         //devload@naver.com
@@ -70,30 +71,33 @@ public class MpmStackTraceTest {
         WebElement goDistributionAnalysis = driver.findElement(By.cssSelector("html > body > div > div > header > div:nth-of-type(2) > div > ul > div:nth-of-type(4) > li > ul > li:nth-of-type(1) > a > span"));
         goDistributionAnalysis.click();
 
-//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//        WebElement TimeLine15_16 = driver.findElement(By.cssSelector("rect[data-index='31']"));
-//        TimeLine15_16.click();
+        WebElement AnalysisDatePicker = driver.findElement(By.cssSelector("div[class='date-info'] span"));
+        AnalysisDatePicker.click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        Thread.sleep(3000);
+        WebElement SelectDate = driver.findElement(By.cssSelector("html > body > div > div > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div:nth-of-type(1) > div:nth-of-type(2) > div > div:nth-of-type(2) > div > span:nth-of-type(34)"));
+        SelectDate.click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        System.out.println("Select Date");
+        Thread.sleep(4000);
+
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebElement TimeLine15_16_pixel = driver.findElement(By.cssSelector("rect[data-index='31']"));
+        TimeLine15_16_pixel.click();
+        System.out.println("111");
+        Thread.sleep(4000);
+
+
+
         WebElement P95Graph = driver.findElement(By.cssSelector("rect[class*='p95']"));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         P95Graph.click();
+        System.out.println("11122");
 
 
 
-
-//            드래그할 Element가 없음
-//            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//            WebElement source = driver.findElement(By.cssSelector("html > body > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div > div:nth-of-type(2) > div > div:nth-of-type(1) > div > div:nth-of-type(2) > svg > g:nth-of-type(3) > line:nth-of-type(1)"));
-//            WebElement target = driver.findElement(By.cssSelector("html > body > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div > div:nth-of-type(2) > div > div:nth-of-type(1) > div > div:nth-of-type(2) > svg > g:nth-of-type(3) > line:nth-of-type(7)"));
-//            Actions DragBuilder = new Actions(driver);
-//            DragBuilder.dragAndDrop(source, target).perform();
-
-
-//프레딧 AOS 2023.04.21 15:30~16:00 중 15:57 픽셀 svg[width='820']
-//        WebElement Native_UI_Rendering_Time_pixel = driver.findElement(By.cssSelector("svg[width='820']"));
-//        Native_UI_Rendering_Time_pixel.click();
-
-        driver.get("https://mpm.imqa.io/mpm/559/statistics/3.1.76/activity/nativeRendering?startDatetime=1682060220000&endDatetime=1682060279000&histogram_type=nativeRendering&startUsage=23080&endUsage=25387");
+        WebElement Native_UI_Rendering_Time_pixel = driver.findElement(By.cssSelector("rect[data-value='11540']"));
+        Native_UI_Rendering_Time_pixel.click();
 
         WebElement UI_Thread_Line = driver.findElement(By.cssSelector("li[data-id='6f1c54e1-ab0e-4fa8-9b48-415313e07659'] div[class='row_data']"));
         if (isElementPresent(By.cssSelector("li[data-id='6f1c54e1-ab0e-4fa8-9b48-415313e07659'] div[class='row_data']"))){
