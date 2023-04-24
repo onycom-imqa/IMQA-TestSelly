@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import static junit.framework.TestCase.fail;
@@ -71,6 +72,14 @@ public class MpmStackTraceTest {
         WebElement goDistributionAnalysis = driver.findElement(By.cssSelector("html > body > div > div > header > div:nth-of-type(2) > div > ul > div:nth-of-type(4) > li > ul > li:nth-of-type(1) > a > span"));
         goDistributionAnalysis.click();
 
+        WebElement AppVerDropBox = driver.findElement(By.cssSelector("button[class='dropdown-btn']"));
+        AppVerDropBox.click();
+
+        WebElement SelectAppVerSecond = driver.findElement(By.cssSelector("html > body > div > div > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div:nth-of-type(2) > button:nth-of-type(2)"));
+        SelectAppVerSecond.click();
+
+
+
         WebElement AnalysisDatePicker = driver.findElement(By.cssSelector("div[class='date-info'] span"));
         AnalysisDatePicker.click();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -96,26 +105,50 @@ public class MpmStackTraceTest {
 
 
 
-        WebElement Native_UI_Rendering_Time_pixel = driver.findElement(By.cssSelector("rect[data-value='11540']"));
+        WebElement Native_UI_Rendering_Time_pixel = driver.findElement(By.cssSelector("rect[data-value='23080']"));
         Native_UI_Rendering_Time_pixel.click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        WebElement UI_Thread_Line = driver.findElement(By.cssSelector("li[data-id='6f1c54e1-ab0e-4fa8-9b48-415313e07659'] div[class='row_data']"));
-        if (isElementPresent(By.cssSelector("li[data-id='6f1c54e1-ab0e-4fa8-9b48-415313e07659'] div[class='row_data']"))){
-            WebElement UIThreadCheck = driver.findElement(By.cssSelector("li[data-id='6f1c54e1-ab0e-4fa8-9b48-415313e07659'] div[class='row_data']"));
-            if (UIThreadCheck.isEnabled())
+
+        String currentWindowId = driver.getWindowHandle();
+        Set<String> allWindow = driver.getWindowHandles();
+        if(allWindow.isEmpty()) {
+            for (String windowId : allWindow) {
+                driver.switchTo().window(windowId);
+                if (driver.getPageSource().contains("데이터가 아직 수집되지 않았거나 데이터가 없습니다.")) {
+                    try {System.out.println("스택 데이터가 없습니다.");
+
+                }catch (NoSuchElementException e) {
+                        System.out.println("스택 데이터가 있습니다.");
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        driver.switchTo().window(currentWindowId);
+
+
+
+        driver.get("https://mpm.imqa.io/mpm/559/statistics/3.1.76/activity/nativeRendering?startDatetime=1682060220000&endDatetime=1682060279000&histogram_type=nativeRendering&startUsage=23080&endUsage=25387");
+        Thread.sleep(3000);
+        WebElement UI_Thread_Line = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > ul > li:nth-of-type(1) > div > span:nth-of-type(2)"));
+        if (isElementPresent(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > ul > li:nth-of-type(1) > div > span:nth-of-type(2)"))){
+            WebElement UIThreadCheck = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > ul > li:nth-of-type(1) > div > span:nth-of-type(2)"));
+            if (UIThreadCheck.isDisplayed())
             System.out.println("리버스 스택 데이터가 있습니다.");
         }else {
-            fail();
+            fail("리버스 스택 데이터가 없습니다.");
         }
         UI_Thread_Line.getText();
 
-        WebElement Non_Ui_Thread = driver.findElement(By.cssSelector("li[data-id='a84ea6df-d1d7-47be-a196-6143bb8d3581'] div[class='row_data']"));
-        if (isElementPresent(By.cssSelector("li[data-id='6f1c54e1-ab0e-4fa8-9b48-415313e07659'] div[class='row_data']"))){
-            WebElement NonUiThreadCheck = driver.findElement(By.cssSelector("li[data-id='6f1c54e1-ab0e-4fa8-9b48-415313e07659'] div[class='row_data']"));
-            if (NonUiThreadCheck.isEnabled())
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebElement Non_Ui_Thread = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > ul > li:nth-of-type(1) > div > span:nth-of-type(2)"));
+        if (isElementPresent(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > ul > li:nth-of-type(1) > div > span:nth-of-type(2)"))){
+            WebElement NonUiThreadCheck = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > ul > li:nth-of-type(1) > div > span:nth-of-type(2)"));
+            if (NonUiThreadCheck.isDisplayed())
                 System.out.println("리버스 스택 데이터가 있습니다.");
         }else {
-            fail();
+            fail("리버스 스택 데이터가 없습니다.");
         }
         Non_Ui_Thread.getText();
     }
