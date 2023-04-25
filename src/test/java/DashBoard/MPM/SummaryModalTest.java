@@ -2,7 +2,8 @@ package DashBoard.MPM;
 
 
 import org.apache.commons.io.FileUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
@@ -17,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 import static junit.framework.TestCase.fail;
 
+@DisplayName("MPM 화면별 성능현황 화면카드 테스트")
 public class SummaryModalTest {
 
     private WebDriver driver;
@@ -41,11 +43,9 @@ public class SummaryModalTest {
 
     }
 
-    @Test
-    public void main() {
-    }
 
     @Test
+    @DisplayName("화면카드 데이터 수집여부 테스트")
     public void run() throws IOException {
 
         WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
