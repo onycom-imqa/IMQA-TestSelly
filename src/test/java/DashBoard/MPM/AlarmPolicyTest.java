@@ -5,7 +5,8 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -20,6 +21,7 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.fail;
 
 
+@DisplayName("알림정책 등록수정 테스트")
 public class AlarmPolicyTest {
 
     private WebDriver driver;
@@ -48,7 +50,9 @@ public class AlarmPolicyTest {
 
 
     @Test
+    @DisplayName("알림정책 등록수정 테스트")
     public void run() throws InterruptedException {
+
         Row targetRow = null;
         try (FileInputStream file = new FileInputStream(new File(filePath, fileNm))) {
 
@@ -62,18 +66,22 @@ public class AlarmPolicyTest {
             // 모든 행(row)들을 조회한다.
             int rowIndex = -1;
             for (Row row : sheet) {
+                boolean foundAlarmPolicy = false;
+                boolean foundClick = false;
                 Iterator<Cell> cellIterator = row.cellIterator();
                 while (cellIterator.hasNext()) {
                     Cell cell = cellIterator.next();
                     if (cell.getCellType() == CellType.STRING) {
                         String cellValue = cell.getStringCellValue();
                         if ("AlarmPolicyTest".equals(cellValue)) {
-                            rowIndex = row.getRowNum();
-                            break;
+                            foundAlarmPolicy = true;
+                        } else if ("Click".equals(cellValue)) {
+                            foundClick = true;
                         }
                     }
                 }
-                if (rowIndex != -1) {
+                if (foundAlarmPolicy && foundClick) {
+                    rowIndex = row.getRowNum();
                     break;
                 }
             }
@@ -98,6 +106,7 @@ public class AlarmPolicyTest {
         //class_name은 생각해보니까 식별자라서 사용할 일이 없네요
         String register_name = targetRow.getCell(2).getStringCellValue();
         String modify_name = targetRow.getCell(4).getStringCellValue();
+
 
 
         WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
