@@ -1,6 +1,7 @@
 package DashBoard.MPM;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -12,8 +13,8 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import static junit.framework.TestCase.fail;
-import static org.junit.Assert.*;
 
+@DisplayName("리버스 스택 조회")
 public class MpmStackTraceTest {
 
 
@@ -40,6 +41,7 @@ public class MpmStackTraceTest {
     }
 
     @Test
+    @DisplayName("네이티브 화면 로딩시간")
     public void run() throws InterruptedException {
 
         WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));

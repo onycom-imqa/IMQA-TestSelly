@@ -1,4 +1,5 @@
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -8,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 import static junit.framework.TestCase.fail;
 
+@DisplayName("매핑파일 업로드 테스트")
 public class ProguardUploadTest {
 
 
@@ -35,6 +37,7 @@ public class ProguardUploadTest {
 
 
     @Test
+    @DisplayName("프로가드 업로드 테스트")
     public void run() throws InterruptedException {
 
         //        //파일 업로드 테스트
@@ -94,11 +97,11 @@ public class ProguardUploadTest {
         ProguardModalCancel.click();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        System.out.println("1133");
+
         WebElement MangeDropButton2 = driver.findElement(By.cssSelector("div[class='project-dropdown'] a[class='dropdown-toggle']"));
         MangeDropButton2.click();
 
-        System.out.println("1122");
+
         WebElement ProguardSettingButton2 = driver.findElement(By.cssSelector("html > body > div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(2) > table > tbody > tr:nth-of-type(1) > td:nth-of-type(5) > div > div > ul > li:nth-of-type(2) > a"));
         ProguardSettingButton2.click();
 

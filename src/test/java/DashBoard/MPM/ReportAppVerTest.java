@@ -1,6 +1,7 @@
 package DashBoard.MPM;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 import static junit.framework.TestCase.fail;
 import static org.apache.commons.io.FileUtils.copyFile;
 
+@DisplayName("앱버전 변경 및 보고서 데이터 적용 테스트")
 public class ReportAppVerTest {
     private WebDriver driver;
 
@@ -35,11 +37,9 @@ public class ReportAppVerTest {
 
     }
 
-    @Test
-    public void main() {
-    }
 
     @Test
+    @DisplayName("보고서 데이터 수집 및 반영 여부 확인")
     public void run() throws IOException {
 
         //        앱 버전별 보고서 확인
