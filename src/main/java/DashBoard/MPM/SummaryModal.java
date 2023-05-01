@@ -1,5 +1,6 @@
 package DashBoard.MPM;
 
+import DashBoard.PoiReadExcel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,8 @@ import java.util.concurrent.TimeUnit;
 public class SummaryModal {
 
     private final WebDriver driver;
+
+    private PoiReadExcel poiReadExcel;
 
     public static void main(String[] args) throws Exception {
         System.out.println("Say Run");
@@ -35,6 +38,8 @@ public class SummaryModal {
     }
 
     public void run() throws Exception {
+
+        poiReadExcel.readExcelFile();
 
         WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
         idField.sendKeys("su10king@gmail.com");
