@@ -1,6 +1,11 @@
 package DashBoard.MPM;
 
 import DashBoard.PoiReadExcel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -18,9 +24,6 @@ public class MpmStackTrace {
     private final WebDriver driver;
     private PoiReadExcel poiReadExcel;
 
-    public void RunPoiReadExcel (PoiReadExcel poiReadExcel) {
-        this.poiReadExcel = poiReadExcel;
-    }
 
     public static void main(String[] args) throws Exception {
         System.out.println("Say Run");
@@ -47,7 +50,8 @@ public class MpmStackTrace {
 
         public void run() throws Exception {
 
-            RunPoiReadExcel(poiReadExcel);
+            poiReadExcel.readExcelFile();
+
 
             WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
             idField.sendKeys("devload@naver.com");
