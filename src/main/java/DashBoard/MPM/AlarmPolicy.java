@@ -1,5 +1,8 @@
 package DashBoard.MPM;
 
+import DashBoard.AlarmPoiReadExcel;
+import DashBoard.PoiReadExcel;
+import DashBoard.Vo.AlarmPolicyVo;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -12,6 +15,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -22,8 +26,8 @@ public class AlarmPolicy {
 
     private final WebDriver driver;
 
-    public static String filePath = "/Users/id_sucheol/Downloads";
-    public static String fileNm = "ExcelReadTest.xlsx";
+    private AlarmPoiReadExcel alarmPoiReadExcel;
+
 
     public static void main(String[] args) throws Exception {
         System.out.println("Say Run");
@@ -50,62 +54,15 @@ public class AlarmPolicy {
 
     public void run() throws Exception {
 
-        Row targetRow = null;
-        try (FileInputStream file = new FileInputStream(new File(filePath, fileNm))) {
-
-            // 엑셀 파일로 Workbook instance를 생성한다.
-            XSSFWorkbook workbook = new XSSFWorkbook(file);
-
-            // workbook의 첫번째 sheet를 가저온다.
-            XSSFSheet sheet = workbook.getSheetAt(0);
-
-
-            // 모든 행(row)들을 조회한다.
-            int rowIndex = -1;
-            for (Row row : sheet) {
-                Iterator<Cell> cellIterator = row.cellIterator();
-                while (cellIterator.hasNext()) {
-                    Cell cell = cellIterator.next();
-                    if (cell.getCellType() == CellType.STRING) {
-                        String cellValue = cell.getStringCellValue();
-                        if ("AlarmPolicyTest".equals(cellValue)) {
-                            rowIndex = row.getRowNum();
-                            break;
-                        }
-                    }
-                }
-                if (rowIndex != -1) {
-                    break;
-                }
-            }
-
-            if (rowIndex != -1) {
-                targetRow = sheet.getRow(rowIndex);
-                for (Cell cell : targetRow) {
-                    if (cell.getCellType() == CellType.STRING) {
-                        String cellValue = cell.getStringCellValue();
-                        System.out.print(cellValue + "\t");
-                    }
-                }
-            } else {
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        String class_name = targetRow.getCell(0).getStringCellValue();
-        //class_name은 생각해보니까 식별자라서 사용할 일이 없네요
-        String register_name = targetRow.getCell(2).getStringCellValue();
-        String modify_name = targetRow.getCell(4).getStringCellValue();
-
+        AlarmPoiReadExcel alarmPoiReadExcel = new AlarmPoiReadExcel();
+        String register_name = alarmPoiReadExcel.getRegisterName();
+        String class_name = alarmPoiReadExcel.getClass_name();
 
         WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
         idField.sendKeys("su10king@gmail.com");
-        //devload@naver.com
 
         WebElement passwordField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(1) > input"));
         passwordField.sendKeys("sucheol9608!");
-
 
         WebElement loginButton = driver.findElement(By.cssSelector("button[class='submit']"));
         loginButton.click();
@@ -191,7 +148,7 @@ public class AlarmPolicy {
 
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        ModifyAlarmPolicyName2.sendKeys(modify_name);
+        ModifyAlarmPolicyName2.sendKeys(class_name);
 
         WebElement AlarmResponseTime = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div > div:nth-of-type(3) > div:nth-of-type(3) > input"));
         AlarmResponseTime.clear();
