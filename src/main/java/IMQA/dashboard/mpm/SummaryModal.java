@@ -1,5 +1,6 @@
 package IMQA.dashboard.mpm;
 
+import IMQA.dashboard.ExcelRead.PoiReadExcel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -36,7 +37,7 @@ public class SummaryModal {
 
     public void run() throws Exception {
 
-        IMQA.DashBoard.ExcelRead.PoiReadExcel poiReadExcel = new IMQA.DashBoard.ExcelRead.PoiReadExcel();
+        PoiReadExcel poiReadExcel = new PoiReadExcel();
         poiReadExcel.readExcelFile();
         String register_name = poiReadExcel.getRegisterName();
 

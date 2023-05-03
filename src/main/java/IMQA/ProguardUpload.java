@@ -1,5 +1,6 @@
 package IMQA;
 
+import IMQA.dashboard.ExcelRead.PoiReadExcel;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -36,7 +37,7 @@ public class ProguardUpload {
 
     public void run() throws Exception{
 
-        IMQA.DashBoard.ExcelRead.PoiReadExcel poiReadExcel = new IMQA.DashBoard.ExcelRead.PoiReadExcel();
+        PoiReadExcel poiReadExcel = new PoiReadExcel();
         poiReadExcel.readExcelFile();
         String register_name = poiReadExcel.getRegisterName();
         register_name.equals("프로가드 업로드-01");

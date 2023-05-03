@@ -1,6 +1,5 @@
 package IMQA.dashboard.ExcelRead;
 
-import IMQA.DashBoard.ExcelRead.PoiReadExcel;
 import com.common.Const;
 
 import java.util.List;
@@ -12,6 +11,11 @@ public abstract class IPoiReadExcel extends Const {
     public static String filePath;
     public static String fileName;
 
-    public static final IPoiReadExcel excel = new PoiReadExcel();
+    public static final IPoiReadExcel excel = new IPoiReadExcel() {
+        @Override
+        public List<Map<String, String>> readExcel(String fileNm) {
+            return null;
+        }
+    };
     public static final List<Map<String,String>> classList = excel.readExcel(fileName);
 }

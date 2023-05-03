@@ -1,5 +1,6 @@
 package IMQA.dashboard.mpm;
 
+import IMQA.dashboard.ExcelRead.PoiReadExcel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -42,7 +43,7 @@ public class MpmStackTrace {
 
         public void run() throws Exception {
 
-            IMQA.DashBoard.ExcelRead.PoiReadExcel poiReadExcel = new IMQA.DashBoard.ExcelRead.PoiReadExcel();
+            PoiReadExcel poiReadExcel = new PoiReadExcel();
             poiReadExcel.readExcelFile();
             String register_name = poiReadExcel.getRegisterName();
 

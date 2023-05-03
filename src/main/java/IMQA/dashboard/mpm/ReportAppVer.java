@@ -1,6 +1,7 @@
 package IMQA.dashboard.mpm;
 
 
+import IMQA.dashboard.ExcelRead.PoiReadExcel;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -41,7 +42,7 @@ public class ReportAppVer {
 
     public void run() throws Exception {
 
-        IMQA.DashBoard.ExcelRead.PoiReadExcel poiReadExcel = new IMQA.DashBoard.ExcelRead.PoiReadExcel();
+        PoiReadExcel poiReadExcel = new PoiReadExcel();
         poiReadExcel.readExcelFile();
         String register_name = poiReadExcel.getRegisterName();
 

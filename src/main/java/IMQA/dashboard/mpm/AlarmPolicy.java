@@ -11,20 +11,10 @@ import java.util.concurrent.TimeUnit;
 
 public class AlarmPolicy {
 
-    private final WebDriver driver;
+    private static WebDriver driver;
 
 
 
-    public static void main(String[] args) throws Exception {
-        System.out.println("Say Run");
-        while (true) {
-            try {
-                new AlarmPolicy().run();
-            } catch (Exception e) {
-
-            }
-        }
-    }
 
 
     public AlarmPolicy() {
@@ -38,11 +28,14 @@ public class AlarmPolicy {
 
     }
 
-    public void run() throws Exception {
+    public static void AddAlarmPolicy() throws Exception {
+//
+//        IMQA.DashBoard.ExcelRead.PoiReadExcel poiReadExcel = new IMQA.DashBoard.ExcelRead.PoiReadExcel();
+//        poiReadExcel.readExcelFile();
+//        String registerName = poiReadExcel.getRegisterName();
+//        System.out.println(poiReadExcel.registerName);
 
-        IMQA.DashBoard.ExcelRead.PoiReadExcel poiReadExcel = new IMQA.DashBoard.ExcelRead.PoiReadExcel();
-        poiReadExcel.readExcelFile();
-        String register_name = poiReadExcel.getRegisterName();
+
 
         WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
         idField.sendKeys("su10king@gmail.com");
