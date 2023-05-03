@@ -1,6 +1,6 @@
-package DashBoard.MPM;
+package IMQA.dashboard.mpm;
 
-import DashBoard.PoiReadExcel;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -15,7 +15,6 @@ import java.util.concurrent.TimeUnit;
 public class ReportAppVer {
 
     private final WebDriver driver;
-    private PoiReadExcel poiReadExcel;
 
     public static void main(String[] args) throws Exception {
         System.out.println("Say Run");
@@ -42,7 +41,10 @@ public class ReportAppVer {
 
     public void run() throws Exception {
 
+        IMQA.DashBoard.ExcelRead.PoiReadExcel poiReadExcel = new IMQA.DashBoard.ExcelRead.PoiReadExcel();
         poiReadExcel.readExcelFile();
+        String register_name = poiReadExcel.getRegisterName();
+
 
         WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
         idField.sendKeys("devload@naver.com");
