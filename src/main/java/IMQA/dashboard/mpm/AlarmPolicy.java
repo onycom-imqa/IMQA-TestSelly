@@ -1,13 +1,5 @@
-package DashBoard.MPM;
+package IMQA.dashboard.mpm;
 
-import DashBoard.AlarmPoiReadExcel;
-import DashBoard.PoiReadExcel;
-import DashBoard.Vo.AlarmPolicyVo;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -15,30 +7,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 public class AlarmPolicy {
 
-    private final WebDriver driver;
-
-    private AlarmPoiReadExcel alarmPoiReadExcel;
+    private static WebDriver driver;
 
 
-    public static void main(String[] args) throws Exception {
-        System.out.println("Say Run");
-        while (true) {
-            try {
-                new AlarmPolicy().run();
-            } catch (Exception e) {
 
-            }
-        }
-    }
 
 
     public AlarmPolicy() {
@@ -52,11 +28,14 @@ public class AlarmPolicy {
 
     }
 
-    public void run() throws Exception {
+    public static void AddAlarmPolicy() throws Exception {
+//
+//        IMQA.DashBoard.ExcelRead.PoiReadExcel poiReadExcel = new IMQA.DashBoard.ExcelRead.PoiReadExcel();
+//        poiReadExcel.readExcelFile();
+//        String registerName = poiReadExcel.getRegisterName();
+//        System.out.println(poiReadExcel.registerName);
 
-        AlarmPoiReadExcel alarmPoiReadExcel = new AlarmPoiReadExcel();
-        String register_name = alarmPoiReadExcel.getRegisterName();
-        String class_name = alarmPoiReadExcel.getClass_name();
+
 
         WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
         idField.sendKeys("su10king@gmail.com");
@@ -90,7 +69,7 @@ public class AlarmPolicy {
 
 
         WebElement AlarmPolicyName = driver.findElement(By.cssSelector("input[class^='name-input']"));
-        AlarmPolicyName.sendKeys(register_name);
+        AlarmPolicyName.sendKeys("알림정책 등록");
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -148,7 +127,7 @@ public class AlarmPolicy {
 
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        ModifyAlarmPolicyName2.sendKeys(class_name);
+        ModifyAlarmPolicyName2.sendKeys("수정할 알림 제목");
 
         WebElement AlarmResponseTime = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div > div:nth-of-type(3) > div:nth-of-type(3) > input"));
         AlarmResponseTime.clear();
