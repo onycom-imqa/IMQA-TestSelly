@@ -1,5 +1,6 @@
 package IMQA.dashboard.mpm;
 
+import com.common.Const;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +14,7 @@ public class AlarmPolicy {
 
     private static WebDriver driver;
 
-
+    private static Const aConst;
 
 
 
@@ -35,13 +36,11 @@ public class AlarmPolicy {
 //        String registerName = poiReadExcel.getRegisterName();
 //        System.out.println(poiReadExcel.registerName);
 
-
-
         WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
-        idField.sendKeys("su10king@gmail.com");
+        idField.sendKeys(aConst.myTestEmail);
 
         WebElement passwordField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(1) > input"));
-        passwordField.sendKeys("sucheol9608!");
+        passwordField.sendKeys(aConst.password);
 
         WebElement loginButton = driver.findElement(By.cssSelector("button[class='submit']"));
         loginButton.click();
