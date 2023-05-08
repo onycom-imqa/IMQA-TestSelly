@@ -1,6 +1,7 @@
 package IMQA.dashboard.mpm;
 
 import IMQA.dashboard.ExcelRead.PoiReadExcel;
+import com.common.Const;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class SummaryModal {
 
     private final WebDriver driver;
+    private Const aConst;
 
     public static void main(String[] args) throws Exception {
         System.out.println("Say Run");
@@ -42,11 +44,11 @@ public class SummaryModal {
         String register_name = poiReadExcel.getRegisterName();
 
         WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
-        idField.sendKeys("su10king@gmail.com");
+        idField.sendKeys(aConst.myTestEmail);
         //devload@naver.com
 
         WebElement passwordField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(1) > input"));
-        passwordField.sendKeys("sucheol9608!");
+        passwordField.sendKeys(aConst.password);
 
         WebElement loginButton = driver.findElement(By.cssSelector("button[class='submit']"));
         loginButton.click();
