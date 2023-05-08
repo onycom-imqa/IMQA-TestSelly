@@ -1,5 +1,6 @@
 package IMQA.dashboard.mpm;
 
+import IMQA.dashboard.ExcelRead.PoiReadExcel;
 import com.common.Const;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -29,12 +30,18 @@ public class AlarmPolicy {
 
     }
 
+    public static void ModifyAlarmPolicy() {
+    }
     public static void AddAlarmPolicy() throws Exception {
 //
 //        IMQA.DashBoard.ExcelRead.PoiReadExcel poiReadExcel = new IMQA.DashBoard.ExcelRead.PoiReadExcel();
 //        poiReadExcel.readExcelFile();
 //        String registerName = poiReadExcel.getRegisterName();
 //        System.out.println(poiReadExcel.registerName);
+
+        PoiReadExcel poiReadExcel = new PoiReadExcel();
+        poiReadExcel.readExcelFile();
+        String register_name = poiReadExcel.getRegisterName();
 
         WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
         idField.sendKeys(aConst.myTestEmail);

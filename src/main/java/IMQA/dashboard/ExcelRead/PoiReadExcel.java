@@ -1,8 +1,6 @@
 package IMQA.dashboard.ExcelRead;
 
 import IMQA.dashboard.mpm.AlarmPolicy;
-import IMQA.dashboard.mpm.ReportAppVer;
-import com.common.Const;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -22,17 +20,10 @@ public class PoiReadExcel extends IPoiReadExcel {
     private static AlarmPolicy alarmPolicy = new AlarmPolicy();
     public static String registerName;
 
-    private static String fileName;
-    private static String filePath;
+    public String filePath = "/Users/id_sucheol/Downloads";
 
-    public PoiReadExcel(String filePath, String fileName) {
-        this.filePath = filePath;
-        this.fileName = fileName;
-    }
+    public String fileName = "teste.xlsx";
 
-    public PoiReadExcel() {
-        this(Const.filePath, Const.fileName);
-    }
 
     public static void main(String[] args) throws Exception {
         System.out.println("Say Run");
@@ -63,19 +54,20 @@ public class PoiReadExcel extends IPoiReadExcel {
             XSSFSheet sheet = workbook.getSheetAt(0);
 
 
-
+            System.out.println("1step");
             // 모든 행(row)들을 조회한다.
             int rowIndex = -1;
             for (Row row : sheet) {
                 Iterator<Cell> cellIterator = row.cellIterator();
                 while (cellIterator.hasNext()) {
                     Cell cell = cellIterator.next();
+                    System.out.println("2step");
                     if (cell.getCellType() == CellType.STRING) {
                         String cellValue = cell.getStringCellValue();
                         rowIndex = row.getRowNum();
                         Cell nameCell = row.getCell(0);
                         registerName = nameCell.getStringCellValue();
-
+                        System.out.println("3step");
 
                         switch (registerName) {
                             case "알림정책-01":
@@ -89,7 +81,7 @@ public class PoiReadExcel extends IPoiReadExcel {
                             default:
                                 throw new IllegalStateException("Unexpected value: " + registerName);
                         }
-
+                        System.out.println("사이클 끝");
                     }
                 }
             }
