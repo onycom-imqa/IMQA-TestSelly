@@ -1,7 +1,6 @@
 package IMQA.dashboard.mpm;
 
 import IMQA.dashboard.ExcelRead.PoiReadExcel;
-import com.common.Const;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +15,6 @@ import java.util.concurrent.TimeUnit;
 public class MpmStackTrace {
 
 
-    private Const aConst;
     private final WebDriver driver;
 
 
@@ -52,11 +50,11 @@ public class MpmStackTrace {
 
 
             WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
-            idField.sendKeys(aConst.devEmail);
+            idField.sendKeys("devload@naver.com");
             //devload@naver.com
 
             WebElement passwordField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(1) > input"));
-            passwordField.sendKeys(aConst.devPassword);
+            passwordField.sendKeys("sh583582!23$");
 
 
             WebElement loginButton = driver.findElement(By.cssSelector("button[class='submit']"));
