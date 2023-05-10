@@ -1,110 +1,94 @@
 package IMQA.dashboard.ExcelRead;
 
-import IMQA.dashboard.mpm.AlarmPolicy;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
-public class PoiReadExcel extends IPoiReadExcel {
+public abstract class PoiReadExcel<V>  implements IPoiReadExcel<V>  {
 
-    private static AlarmPolicy alarmPolicy = new AlarmPolicy();
-    public static String registerName;
+    File excelFile = null;
+    int rowindex=0;
+    int cellMaxIndex = 0;
 
-    public String filePath = "/Users/id_sucheol/Downloads";
-    public String fileName = "teste.xlsx";
 
-    public static void main(String[] args) {
+    public PoiReadExcel(File excelFile) {
+        this.excelFile = excelFile;
+    }
 
-        try {
-            FileInputStream file = new FileInputStream("/Users/id_sucheol/Downloads/teste.xlsx");
-            XSSFWorkbook workbook = new XSSFWorkbook(file);
-
-            int rowindex=0;
-            int columnindex=0;
-
-            XSSFSheet sheet=workbook.getSheetAt(0);
-            int rows=sheet.getPhysicalNumberOfRows();
-            for(rowindex=1;rowindex<rows;rowindex++) {
-                XSSFRow row = sheet.getRow(rowindex);
-                if (row != null) {
-                    XSSFCell cell = row.getCell(0);
-                    String value = "";
-                    if (cell == null) {
-                    } else {
-                        switch (cell.getCellType()) {
-                            case FORMULA:
-                                value = cell.getCellFormula();
-                                break;
-                            case NUMERIC:
-                                value = cell.getNumericCellValue() + "";
-                                break;
-                            case STRING:
-                                value = cell.getStringCellValue() + "";
-                                break;
-                            case BLANK:
-                                value = cell.getBooleanCellValue() + "";
-                                break;
-                            case ERROR:
-                                value = cell.getErrorCellValue() + "";
-                                break;
-                        }
-                        boolean result = true;
-                            //타입별로 내용 읽기
-                            switch (value) {
-                                case "알림정책-01":
-                                    AlarmPolicy.AlarmPolicy1();
-                                    break;
-                                case "알림정책-02":
-                                    AlarmPolicy.AlarmPolicy2();
-                                    break;
-                                case "알림정책-03":
-                                    AlarmPolicy.AlarmPolicy3();
-                                    break;
-                                case "알림정책-04":
-                                    AlarmPolicy.AlarmPolicy4();
-                                    break;
-                                case "알림정책-05":
-                                    AlarmPolicy.AlarmPolicy5();
-                                    break;
-                                case "알림정책-06":
-                                    AlarmPolicy.AlarmPolicy6();
-                                    break;
-                                case "알림정책-07":
-                                    AlarmPolicy.AlarmPolicy7();
-                                    break;
-                            }
-                            if(result == true){
-                                value += "::: suucess";
-                                System.out.println(value);
-                            } else{
-                                value += "::: failed";
-                                System.out.println(value);
-                            }
-                        }
-                    }
-                }
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
+    public PoiReadExcel(File excelFile, int rowindex) {
+        this.excelFile = excelFile;
+        this.rowindex = rowindex;
     }
 
     @Override
-    public List<Map<String, String>> readExcel(String fileName) {
-        return null;
+    public List<V> readExcel() throws IOException {
+
+        List<V> result = new ArrayList<>();
+
+        FileInputStream file = new FileInputStream(excelFile);
+        XSSFWorkbook workbook = new XSSFWorkbook(file);
+
+        int columnindex=0;
+        //시트 수 (첫번째에만 존재하므로 0을 준다)
+        //만약 각 시트를 읽기위해서는 FOR문을 한번더 돌려준다
+        XSSFSheet sheet=workbook.getSheetAt(0);
+        //행의 수
+        int rows=sheet.getPhysicalNumberOfRows();
+        for(rowindex=1;rowindex<rows;rowindex++) {
+            //행을읽는다
+            XSSFRow row = sheet.getRow(rowindex);
+            if (row != null) {
+
+                List<String> cellList = new ArrayList<>();
+                for(int j = 0;  j <
+                        (); j++) {
+                    //셀값을 읽어서 cellList에 넣는다
+                    cellList.add(getCellValue(row.getCell(j)));
+                }
+                result.add(marshalling(cellList));
+            }
+
+        }
+
+        return result;
     }
 
-    public void readExcelFile()throws IOException {
-
+    public int maxCellIndex() {
+        return 0;
     }
 
-    public String getRegisterName () {
-        return registerName;
+    public abstract V marshalling(List<String> cellList);
+
+    private String getCellValue(XSSFCell cell) {
+        String value;
+        switch (cell.getCellType()) {
+            case FORMULA:
+                value = cell.getCellFormula();
+                break;
+            case NUMERIC:
+                value = cell.getNumericCellValue() + "";
+                break;
+            case STRING:
+                value = cell.getStringCellValue() + "";
+                break;
+            case BLANK:
+                value = cell.getBooleanCellValue() + "";
+                break;
+            case ERROR:
+                value = cell.getErrorCellValue() + "";
+                break;
+        }
+        return value;
     }
+
+//    try {
+//
 }

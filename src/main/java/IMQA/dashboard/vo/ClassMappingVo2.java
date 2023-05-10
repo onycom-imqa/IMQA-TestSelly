@@ -1,6 +1,6 @@
 package IMQA.dashboard.vo;
 
-public class ClassMappingVo {
+public class ClassMappingVo2 {
 
     String registerName;
 

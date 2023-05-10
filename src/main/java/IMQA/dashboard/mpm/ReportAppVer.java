@@ -1,8 +1,7 @@
 package IMQA.dashboard.mpm;
 
 
-import IMQA.dashboard.ExcelRead.PoiReadExcel;
-import com.common.Const;
+import com.common.Constant;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -18,7 +17,7 @@ public class ReportAppVer {
 
     private final WebDriver driver;
 
-    private Const aConst;
+    private Constant constant;
 
     public static void main(String[] args) throws Exception {
         System.out.println("Say Run");
@@ -45,17 +44,12 @@ public class ReportAppVer {
 
     public void run() throws Exception {
 
-        PoiReadExcel poiReadExcel = new PoiReadExcel();
-        poiReadExcel.readExcelFile();
-        String register_name = poiReadExcel.getRegisterName();
-
-
         WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
-        idField.sendKeys(aConst.devEmail);
+        idField.sendKeys(constant.devEmail);
 
 
         WebElement passwordField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(1) > input"));
-        passwordField.sendKeys(aConst.devPassword);
+        passwordField.sendKeys(constant.devPassword);
 
 
         WebElement loginButton = driver.findElement(By.cssSelector("button[class='submit']"));

@@ -1,7 +1,6 @@
 package IMQA;
 
-import IMQA.dashboard.ExcelRead.PoiReadExcel;
-import com.common.Const;
+import com.common.Constant;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -13,7 +12,7 @@ public class ProguardUpload {
 
     private final WebDriver driver;
 
-    private Const aConst;
+    private Constant constant;
 
 
     public static void main(String[] args) throws Exception {
@@ -41,16 +40,12 @@ public class ProguardUpload {
 
     public void run() throws Exception{
 
-        PoiReadExcel poiReadExcel = new PoiReadExcel();
-        poiReadExcel.readExcelFile();
-
-
         WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
-        idField.sendKeys(aConst.myTestEmail);
+        idField.sendKeys(constant.myTestEmail);
         //devload@naver.com
 
         WebElement passwordField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(1) > input"));
-        passwordField.sendKeys(aConst.password);
+        passwordField.sendKeys(constant.password);
 
 
         WebElement loginButton = driver.findElement(By.cssSelector("button[class='submit']"));
