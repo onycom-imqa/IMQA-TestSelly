@@ -1,4 +1,4 @@
-package IMQA.dashboard.mpm;
+package imqa.dashboard.mpm;
 
 import com.common.Constant;
 import org.openqa.selenium.By;
