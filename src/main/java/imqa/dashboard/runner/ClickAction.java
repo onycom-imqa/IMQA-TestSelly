@@ -22,5 +22,4 @@ public class ClickAction implements SeleniumAction {
         WebElement loginButton = driver.findElement(By.cssSelector(dao.findByElement(scenario).getCssSelect()));
         loginButton.click();
     }
-
 }

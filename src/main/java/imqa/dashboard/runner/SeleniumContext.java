@@ -30,8 +30,7 @@ public class SeleniumContext {
         actionMap = new HashedMap<>();
         actionMap.put("클릭", new ClickAction(metricDao));
         actionMap.put("입력", new InputAction(metricDao));
-        actionMap.put("대기",  new SleepAction());
-
+        actionMap.put("대기", new SleepAction());
     }
 
     public void before() {
@@ -41,7 +40,6 @@ public class SeleniumContext {
     }
 
     public void end() {
-
     }
 
     public void newDriver() {
@@ -58,8 +56,13 @@ public class SeleniumContext {
         newDriver();
         before();
 
-        scenarioList.stream().forEach(scenario -> actionMap.get(scenario.getActionName()).run(driver, scenario));
-
+        scenarioList.stream().forEach(scenario -> {
+            try {
+                actionMap.get(scenario.getActionName()).run(driver, scenario);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
         end();
     }
 

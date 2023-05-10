@@ -40,7 +40,7 @@ public class MetricDao extends PoiReadExcel<MetricVo> {
     public MetricVo findByElement(ScenarioVo scenario) {
 
         for(MetricVo metric: metricList) {
-            if(metric.getBigScreen().equals(scenario.getScreen()) && metric.getTestTarget().equals(scenario.getElement())) {
+            if(metric.getSmallScreen().equals(scenario.getScreen()) && metric.getTestTarget().equals(scenario.getElement())) {
                 return metric;
             }
         }

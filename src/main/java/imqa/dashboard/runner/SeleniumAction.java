@@ -5,6 +5,6 @@ import org.openqa.selenium.WebDriver;
 
 public interface SeleniumAction {
 
-    public void run(WebDriver driver, ScenarioVo scenario);
+    public void run(WebDriver driver, ScenarioVo scenario) throws InterruptedException;
 
 }
