@@ -8,6 +8,6 @@ public class SleepAction implements SeleniumAction{
     @Override
     public void run(WebDriver driver, ScenarioVo scenario) throws InterruptedException {
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
     }
 }

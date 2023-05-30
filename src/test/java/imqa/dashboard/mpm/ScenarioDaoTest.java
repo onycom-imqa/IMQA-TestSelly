@@ -15,7 +15,7 @@ public class ScenarioDaoTest {
     @Test
     public void scenarioDao() throws IOException {
 
-        List<ScenarioVo> result = new ScenarioDao(new File("/Users/id_sucheol/Downloads/login.xlsx")).readExcel();
+        List<ScenarioVo> result = new ScenarioDao(new File("/Users/id_sucheol/Downloads/화면분석 시나리오.xlsx")).readExcel();
 
         System.out.println(result);
 

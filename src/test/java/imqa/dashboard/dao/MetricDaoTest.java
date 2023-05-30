@@ -13,7 +13,7 @@ public class MetricDaoTest {
     @Test
     public void metricDao() throws IOException {
 
-        List<MetricVo> result = new MetricDao(new File("/Users/id_sucheol/Downloads/MatricList.xlsx")).readExcel();
+        List<MetricVo> result = new MetricDao(new File("/Users/id_sucheol/Downloads/MatricListF.xlsx")).readExcel();
 
         System.out.println(result);
 

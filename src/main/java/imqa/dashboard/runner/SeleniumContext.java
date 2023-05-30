@@ -32,6 +32,7 @@ public class SeleniumContext {
         actionMap.put("입력", new InputAction(metricDao));
         actionMap.put("대기", new SleepAction());
         actionMap.put("확인", new ElementConfirm(metricDao));
+        actionMap.put("히트맵", new HitMapClassNameAction(metricDao));
     }
 
     public void before() {
