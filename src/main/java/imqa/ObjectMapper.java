@@ -1,4 +1,4 @@
-package IMQA;
+package imqa;
 
 import java.util.Map;
 

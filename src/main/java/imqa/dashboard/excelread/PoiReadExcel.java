@@ -1,4 +1,4 @@
-package IMQA.dashboard.ExcelRead;
+package imqa.dashboard.excelread;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -15,9 +15,9 @@ import java.util.List;
 public abstract class PoiReadExcel<V>  implements IPoiReadExcel<V>  {
 
     File excelFile = null;
-    int rowindex=0;
-    int cellMaxIndex = 0;
 
+
+    int rowindex=0;
 
     public PoiReadExcel(File excelFile) {
         this.excelFile = excelFile;
@@ -48,8 +48,7 @@ public abstract class PoiReadExcel<V>  implements IPoiReadExcel<V>  {
             if (row != null) {
 
                 List<String> cellList = new ArrayList<>();
-                for(int j = 0;  j <
-                        (); j++) {
+                for(int j = 0;  j <= maxCellIndex(); j++) {
                     //셀값을 읽어서 cellList에 넣는다
                     cellList.add(getCellValue(row.getCell(j)));
                 }
@@ -68,7 +67,10 @@ public abstract class PoiReadExcel<V>  implements IPoiReadExcel<V>  {
     public abstract V marshalling(List<String> cellList);
 
     private String getCellValue(XSSFCell cell) {
-        String value;
+        String value = null;
+        if(cell == null) {
+            return "";
+        }
         switch (cell.getCellType()) {
             case FORMULA:
                 value = cell.getCellFormula();
@@ -89,6 +91,4 @@ public abstract class PoiReadExcel<V>  implements IPoiReadExcel<V>  {
         return value;
     }
 
-//    try {
-//
 }

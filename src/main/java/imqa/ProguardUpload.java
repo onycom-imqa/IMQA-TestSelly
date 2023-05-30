@@ -1,4 +1,4 @@
-package IMQA;
+package imqa;
 
 import com.common.Constant;
 import org.openqa.selenium.*;
