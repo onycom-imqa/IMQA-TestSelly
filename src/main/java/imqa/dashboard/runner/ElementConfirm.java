@@ -16,7 +16,8 @@ public class ElementConfirm implements SeleniumAction{
 
     @Override
     public void run(WebDriver driver, ScenarioVo scenario) {
-        WebElement ReportNativeLoading = driver.findElement(By.cssSelector(dao.findByElement(scenario).getCssSelect()));
-        ReportNativeLoading.getText();
+        WebElement elementConfirm = driver.findElement(By.cssSelector(dao.findByElement(scenario).getCssSelect()));
+        elementConfirm.getText();
     }
 }
+

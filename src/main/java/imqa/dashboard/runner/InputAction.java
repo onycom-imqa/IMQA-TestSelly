@@ -20,8 +20,8 @@ public class InputAction implements SeleniumAction{
     @Override
     public void run(WebDriver driver, ScenarioVo scenario) {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        WebElement idField = driver.findElement(By.cssSelector(dao.findByElement(scenario).getCssSelect()));
-        idField.sendKeys(scenario.getParams());
+        WebElement inputParams = driver.findElement(By.cssSelector(dao.findByElement(scenario).getCssSelect()));
+        inputParams.sendKeys(scenario.getParams());
 
     }
 
