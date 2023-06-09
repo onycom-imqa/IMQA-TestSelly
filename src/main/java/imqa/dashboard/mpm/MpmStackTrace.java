@@ -1,7 +1,6 @@
-package IMQA.dashboard.mpm;
+package imqa.dashboard.mpm;
 
-import IMQA.dashboard.ExcelRead.PoiReadExcel;
-import com.common.Const;
+import com.common.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class MpmStackTrace {
 
 
-    private Const aConst;
+    private Constant constant;
     private final WebDriver driver;
 
 
@@ -45,18 +44,12 @@ public class MpmStackTrace {
 
         public void run() throws Exception {
 
-            PoiReadExcel poiReadExcel = new PoiReadExcel();
-            poiReadExcel.readExcelFile();
-            String register_name = poiReadExcel.getRegisterName();
-
-
-
             WebElement idField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(1) > div:nth-of-type(1) > input"));
-            idField.sendKeys(aConst.devEmail);
+            idField.sendKeys(constant.devEmail);
             //devload@naver.com
 
             WebElement passwordField = driver.findElement(By.cssSelector("html > body > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(2) > div:nth-of-type(1) > input"));
-            passwordField.sendKeys(aConst.devPassword);
+            passwordField.sendKeys(constant.devPassword);
 
 
             WebElement loginButton = driver.findElement(By.cssSelector("button[class='submit']"));
