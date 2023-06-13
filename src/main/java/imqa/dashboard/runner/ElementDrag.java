@@ -8,10 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 public class ElementDrag implements SeleniumAction {
-
     private MetricDao dao;
-//    ScenarioVo scenario;
-
 
     public ElementDrag(MetricDao dao) {
         this.dao = dao;
@@ -20,20 +17,20 @@ public class ElementDrag implements SeleniumAction {
     @Override
     public void run(WebDriver driver, ScenarioVo scenario) {
         String[] selectors = scenario.getParams().split(",");
-        if (selectors.length == 2) {
+        if (selectors.length >= 2) {
             String startSelector = selectors[0].trim();
             String endSelector = selectors[1].trim();
 
-            WebElement startElement = driver.findElement(By.cssSelector(startSelector));
-            WebElement endElement = driver.findElement(By.cssSelector(endSelector));
+                WebElement startElement = driver.findElement(By.cssSelector(startSelector));
+                WebElement endElement = driver.findElement(By.cssSelector(endSelector));
 
-            Actions actions = new Actions(driver);
-            actions.clickAndHold(startElement).moveToElement(endElement).perform();
+                Actions builder = new Actions(driver);
+                builder.dragAndDrop(startElement, endElement).perform();
+            } else {
+                System.out.println("드래그못함");
+            }
 
-
-        } else {
-            System.out.println("드래그함");
-        }
     }
+
 
 }
