@@ -8,21 +8,20 @@ import org.openqa.selenium.WebElement;
 
 import java.util.concurrent.TimeUnit;
 
-public class InputAction implements SeleniumAction{
+public class NewTabConfirm implements SeleniumAction {
 
     MetricDao dao;
 
-    InputAction(MetricDao dao) {
+    NewTabConfirm(MetricDao dao) {
         this.dao = dao;
     }
-
 
     @Override
     public void run(WebDriver driver, ScenarioVo scenario) {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        WebElement inputParams = driver.findElement(By.cssSelector(dao.findByElement(scenario).getCssSelect()));
-        inputParams.sendKeys(scenario.getParams());
-
+        WebElement NewTabConfirm = driver.findElement(By.cssSelector(dao.findByElement(scenario).getCssSelect()));
+        String CurrentUrl = driver.getCurrentUrl();
+        driver.get(CurrentUrl);
+        NewTabConfirm.getText();
     }
-
 }

@@ -19,7 +19,7 @@ public class ClickAction implements SeleniumAction {
     @Override
     public void run(WebDriver driver, ScenarioVo scenario) {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        WebElement loginButton = driver.findElement(By.cssSelector(dao.findByElement(scenario).getCssSelect()));
-        loginButton.click();
+        WebElement clickAction = driver.findElement(By.cssSelector(dao.findByElement(scenario).getCssSelect()));
+        clickAction.click();
     }
 }
