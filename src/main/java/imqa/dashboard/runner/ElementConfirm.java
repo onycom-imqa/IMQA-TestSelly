@@ -17,7 +17,14 @@ public class ElementConfirm implements SeleniumAction{
     @Override
     public void run(WebDriver driver, ScenarioVo scenario) {
         WebElement elementConfirm = driver.findElement(By.cssSelector(dao.findByElement(scenario).getCssSelect()));
-        elementConfirm.getText();
+//        String A = elementConfirm.getText();
+        elementConfirm.isDisplayed();
+//        if (A == "") {
+//            System.out.println("확인결과 데이터가 없습니다." + A );
+//        } else {
+//            elementConfirm.getText();
+//        }
+
     }
 }
 
