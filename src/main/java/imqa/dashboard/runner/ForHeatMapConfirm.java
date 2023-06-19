@@ -1,7 +1,6 @@
 package imqa.dashboard.runner;
 
 import imqa.dashboard.dao.MetricDao;
-import imqa.dashboard.vo.MetricVo;
 import imqa.dashboard.vo.ScenarioVo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -18,28 +17,22 @@ public class ForHeatMapConfirm implements SeleniumAction{
 
     @Override
     public void run(WebDriver driver, ScenarioVo scenario) {
-        MetricVo metric = dao.findByElement(scenario);
-        if (metric == null) {
-            // Null 값을 처리하는 예외 처리 로직을 추가합니다.
-            // 예: 로그를 출력하고 메소드 실행을 중단하거나, 다른 대체 작업을 수행합니다.
-            System.out.println("Metric is null for the given scenario.");
-            return;
-        }
-        WebElement elementConfirm = driver.findElement(By.cssSelector(metric.getCssSelect()));
-        WebElement clickAction = driver.findElement(By.cssSelector(metric.getCssSelect()));
-
-        String A = elementConfirm.getText();
-
         JavascriptExecutor js = (JavascriptExecutor) driver;
-//        String Title = (String) js.executeScript("return document.title");
+//        long ListCellsCount = (Long) js.executeScript("HeatMapList = document.getElementsByClassName('b-table-row-selected table-success'); return ListCells.length");
+        long ListCellsCount = (Long) js.executeScript("var ListCells = document.getElementsByClassName('b-table-row-selected table-success'); return ListCells.length");
 
-        long ListCellsCount = (Long) js.executeScript("HeatMapList = document.getElementsByName('content-detail-table'); return ListCells.length");
-        for (int i = 0; i < ListCellsCount;) {
-            clickAction.click();
-            elementConfirm.getText();
-            js.executeScript("document.getElementsByClassName('expanded_icon').value = argument[0]", "expanded_icon");
+        WebElement Non_UI_Thread_Parm = driver.findElement(By.cssSelector("html > body > div > div > section > div > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > ul > li:nth-of-type(1) > div > span:nth-of-type(2)"));
+
+        while (Non_UI_Thread_Parm.isDisplayed()) {
+            for (int i = 1; i <= ListCellsCount; i++) {
+                String NativeRenderList = "tr[class$='table-success'] td[aria-colindex='" + i + "']";
+                WebElement elementToClick = driver.findElement(By.cssSelector(NativeRenderList));
+                elementToClick.click();
             }
         }
     }
+}
+
+
 
 
