@@ -29,10 +29,13 @@ public class SeleniumContext {
     public void setActionMap() {
         actionMap = new HashedMap<>();
         actionMap.put("클릭", new ClickAction(metricDao));
+        actionMap.put("새창확인", new NewTabConfirm(metricDao));
         actionMap.put("입력", new InputAction(metricDao));
         actionMap.put("대기", new SleepAction());
         actionMap.put("확인", new ElementConfirm(metricDao));
         actionMap.put("히트맵", new HitMapClassNameAction(metricDao));
+        actionMap.put("드래그", new ElementDrag(metricDao));
+        actionMap.put("히트맵확인", new ForHeatMapConfirm(metricDao));
     }
 
     public void before() {
@@ -67,10 +70,4 @@ public class SeleniumContext {
         });
         end();
     }
-
-
-
-
-
-
 }
