@@ -12,11 +12,11 @@ public class SeleniumContextTest {
     @Test
     public void seleniumTest() throws IOException {
 
-        MetricDao metricDao = new MetricDao(new File("/Users/id_sucheol/Desktop/SellyExcel/MatricListF.xlsx"));
+        MetricDao metricDao = new MetricDao(new File("/Users/id_sucheol/Desktop/Project/IMQA-TestSelly/SellyExcel/MatricList.xlsx"));
 
         SeleniumContext context = new SeleniumContext(metricDao);
 
-        ScenarioDao scenarioDao = new ScenarioDao(new File("/Users/id_sucheol/Desktop/SellyExcel/화면카드 상세 시나리오 리스트.xlsx"));
+        ScenarioDao scenarioDao = new ScenarioDao(new File("/Users/id_sucheol/Desktop/Project/IMQA-TestSelly/SellyExcel/크래쉬 대시보드 시나리오.xlsx"));
 
         context.run(scenarioDao.readExcel());
 
