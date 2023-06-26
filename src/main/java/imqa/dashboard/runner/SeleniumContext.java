@@ -36,6 +36,9 @@ public class SeleniumContext {
         actionMap.put("히트맵", new HitMapClassNameAction(metricDao));
         actionMap.put("드래그", new ElementDrag(metricDao));
         actionMap.put("히트맵확인", new ForHeatMapConfirm(metricDao));
+        actionMap.put("긴대기", new LongSleepAction());
+        actionMap.put("프로젝트 설정", new SetTestProject(metricDao));
+        actionMap.put("알림확인", new AlertAction(metricDao));
     }
 
     public void before() {
