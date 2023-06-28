@@ -20,7 +20,7 @@ TestSelly를 사용하면 셀리 없고, Selly없는 사람들만 셀리 있겠�
 4. ~~프론트는 무조건 개별적인 ID를 부여하라~~ (배포테스트면 가능)
 
 ### 설치 ###
-1. ChromeDriver 설치
+1. ChromeDriver 설치 (https://chromedriver.chromium.org/downloads)
 <img width="957" alt="스크린샷 2023-06-27 오전 11 22 21" src="https://github.com/onycom-imqa/IMQA-TestSelly/assets/123140855/6f931ff0-5281-4ddc-8e00-aabdbb726427">
 
 2. Aqua IDE 설치
@@ -78,4 +78,22 @@ test {
     useJUnit()
 }
 ```
+
+
+## 엑셀 파일의 테스트 정책 ##
+시나리오 파일과 Matric 파일은 검증지표와 표시위치라는 기준을 공유합니다.
+MatricList에는 Element가 저장됩니다.
+시나리오 파일에서는 ActionName이 저장됩니다.
+
+테스트의 전체적인 흐름은 Element에 Action을 지정하는 방식으로 진행됩니다.
+파란색 셀이 지정된 시나리오파일구역을 키값으로 Element를 호출합니다. 아래의 그림을 보시면 더 쉽게 이해하실 수 있습니다.
+
+### 시나리오 파일의 구조 ###
+<img width="1245" alt="스크린샷 2023-06-27 오후 3 22 09" src="https://github.com/onycom-imqa/IMQA-TestSelly/assets/123140855/048df495-8897-43d2-a6d6-5032e6b296ba">
+
+
+### Matric파일의 구조 ###
+<img width="2243" alt="스크린샷 2023-06-27 오후 3 19 45" src="https://github.com/onycom-imqa/IMQA-TestSelly/assets/123140855/ab8de3bd-370c-4402-9c4a-dcb4674dc623">
+
+
 
