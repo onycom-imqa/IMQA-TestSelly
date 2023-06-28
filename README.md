@@ -19,6 +19,63 @@ TestSelly를 사용하면 셀리 없고, Selly없는 사람들만 셀리 있겠�
 3. 매일매일 변화하는 그래프, 히트맵, 히스토그램의 element 지표를 정책적으로? 기술적으로 확인하는 방법은 뭐가 있을까? 고민이 필요했다.
 4. ~~프론트는 무조건 개별적인 ID를 부여하라~~ (배포테스트면 가능)
 
+### 설치 ###
+1. ChromeDriver 설치
+<img width="957" alt="스크린샷 2023-06-27 오전 11 22 21" src="https://github.com/onycom-imqa/IMQA-TestSelly/assets/123140855/6f931ff0-5281-4ddc-8e00-aabdbb726427">
+
+2. Aqua IDE 설치
+(https://www.jetbrains.com/ko-kr/aqua/download/#section=mac)
+셀레니움 프로젝트를 실행하기 위한 기본 라이브러리를 잘 제공해줌.
 
 
+### Gradle ###
+
+```
+plugins {
+    id 'java'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = '18'
+targetCompatibility = '18'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+
+    implementation group: 'org.apache.poi', name: 'poi', version: '5.0.0'
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.0.0'
+		//엑셀파일 사용을 위한 라이브러리
+
+
+    implementation('org.seleniumhq.selenium:selenium-java:4.7.0')
+    testImplementation('org.seleniumhq.selenium:selenium-java:4.7.0')
+		//셀레니움 사용을 위한 라이브러리
+
+    testImplementation 'org.testng:testng:6.14.3'
+		//테스트 코드의 재사용성을 높이기 위한 기능강화
+
+    testImplementation 'junit:junit:4.13.2'
+
+    implementation 'commons-io:commons-io:2.11.0'
+    testImplementation 'com.codeborne:selenide:6.13.0'
+		//셀레니움 고급 메소드를 사용하기 위한 셀레나이드
+
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+}
+
+
+test {
+    useJUnit()
+}
+```
 
