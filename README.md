@@ -12,6 +12,14 @@ TestSelly를 사용하면 셀리 없고, Selly없는 사람들만 셀리 있겠�
 3. 비개발자, 운영자분들은 element를 입력하지 않아도 되는 정책
 4. 클릭클릭클릭을 trim을 사용해서 문서작성을 간소화. (너무 남발하면 문서로 테스트 내용을 알 수 없음.)
 5. WebDriver element 확인기능을 Deep하게! (Js.scrpitExcute와 While을 사용한 동적 확인)
+6. 기존 탭 닫고, 새로운 탭에서 테스트 진행
+7. 파일업로드 (mac지원, windows 지원 X)
+8. 드래그 기능, 클릭, sendKey 메소드 사용중
+
+### 당신이 원했을 수 도 있지만, 제공하지 않는 기능
+1. Element 묵시적 대기 X, Element Trigger 하드코딩이 없기 때문에 Thread.sleep을 사용. A메소드에서 B메소드 호출 사이에 묵시적 대기(바인딩)가 걸리지 않음
+2. 드롭박스 내부 element 확인기능. select + equals로 만들어서 사용하시면 됩니다.
+3. 테스트 로그 수집기능 및 결과값 엑셀파일 생성기능
 
 ### 개발배경 ###
 1. Collecter에서 수집한 데이터를 Node로 이동시키면서 데이터가 유실되는 케이스들을 발견
@@ -25,6 +33,7 @@ TestSelly를 사용하면 셀리 없고, Selly없는 사람들만 셀리 있겠�
 
 2. Aqua IDE 설치
 (https://www.jetbrains.com/ko-kr/aqua/download/#section=mac)
+
 셀레니움 프로젝트를 실행하기 위한 기본 라이브러리를 잘 제공해줌.
 
 
@@ -94,6 +103,5 @@ MatricList에는 Element가 저장됩니다.
 
 ### Matric파일의 구조 ###
 <img width="2243" alt="스크린샷 2023-06-27 오후 3 19 45" src="https://github.com/onycom-imqa/IMQA-TestSelly/assets/123140855/ab8de3bd-370c-4402-9c4a-dcb4674dc623">
-
 
 
