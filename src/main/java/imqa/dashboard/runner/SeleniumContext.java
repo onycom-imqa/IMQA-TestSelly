@@ -40,12 +40,13 @@ public class SeleniumContext {
         actionMap.put("프로젝트 설정", new SetTestProject(metricDao));
         actionMap.put("알림확인", new AlertAction(metricDao));
         actionMap.put("비활성화 검증",new InActiveConfirm(metricDao));
+        actionMap.put("캐시 새로고침", new RefreshAction());
     }
 
     public void before() {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("http://121.0.136.28:3083/user/login");
+        driver.get("https://account.imqa.io/user/login");
     }
 
     public void end() {
